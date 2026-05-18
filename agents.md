@@ -1,13 +1,18 @@
 # AGENTS.md
 
-## What is this and who is it for?
-[One short paragraph: who the user is, what problem they have, and what this app does about it]
+## Onboarding
+*If the sections below marked [FILL IN] are still empty, do not proceed with any task. Instead, ask the user the following questions one at a time and wait for their answers:*
 
-## Product Philosophy
-[Your 2-3 most opinionated constraints — the ones an agent would get wrong by default]
-- [e.g. Max three habits — simplicity is the product, not a limitation]
-- [e.g. No social features — this is a personal tool, not a network]
-- [e.g. No onboarding — if it needs explaining, redesign it]
+1. *What is this project? Who is it for, what problem does it solve, and why does it matter to them? Take as much space as you need — the more context, the better.*
+2. *What does the magic moment look like? Describe the ideal user experience — the exact moment the user gets value and feels something.*
+
+*Once answered: fill in both sections yourself, then infer the product philosophy from what the user described — what this product clearly is NOT based on their answers. Confirm with the user before continuing. This onboarding runs once only.*
+
+## What is this and who is it for?
+[FILL IN — see Onboarding above]
+
+## Magic Moment
+[FILL IN — see Onboarding above]
 
 ---
 
@@ -33,9 +38,10 @@
 - Add comments on non-obvious logic — explain *why*, not *what*
 
 **After:**
-- Commit only files you edited: `[type]: short description`
+- Commit only files you edited: `[type]: short description`, then push to GitHub
+- Maintain 90% test coverage — every feature and fix ships with tests
 - Update `learnings.md` if you hit a bug or a failed approach
-- Update this file if you learn something about the codebase worth remembering
+- Update this file aggressively — any pattern, constraint, or decision that would help a future agent understand this project faster belongs here. When in doubt, add it.
 
 ---
 
