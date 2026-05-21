@@ -6,7 +6,7 @@
 1. *What is this project? Who is it for, what problem does it solve, and why does it matter to them? Take as much space as you need — the more context, the better.*
 2. *What does the magic moment look like? Describe the ideal user experience — the exact moment the user gets value and feels something.*
 
-*Once answered: fill in both sections yourself, remove this Onboarding section, then infer the product philosophy from what the user described — what this product clearly is NOT based on their answers. Confirm with the user before continuing. This onboarding runs once only.*
+*Once both answers are received: restate the proposed answer for each section, infer the product philosophy from what the user described — what this product clearly is NOT based on their answers — and ask the user to confirm. Only after the user confirms: fill in both sections yourself, add the product philosophy, and remove this Onboarding section. This onboarding runs once only.*
 
 ## What is this and who is it for?
 [FILL IN — see Onboarding above]
