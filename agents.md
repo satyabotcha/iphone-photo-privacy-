@@ -1,18 +1,13 @@
 # AGENTS.md
 
-## Onboarding
-*If the sections below marked [FILL IN] are still empty, do not proceed with any task. Instead, ask the user the following questions one at a time and wait for their answers:*
-
-1. *What is this project? Who is it for, what problem does it solve, and why does it matter to them? Take as much space as you need — the more context, the better.*
-2. *What does the magic moment look like? Describe the ideal user experience — the exact moment the user gets value and feels something.*
-
-*Once both answers are received: restate the proposed answer for each section, infer the product philosophy from what the user described — what this product clearly is NOT based on their answers — and ask the user to confirm. Only after the user confirms: fill in both sections yourself, add the product philosophy, and remove this Onboarding section. This onboarding runs once only.*
-
 ## What is this and who is it for?
-[FILL IN — see Onboarding above]
+A free iOS Share Extension for iPhone users who want to show someone selected photos without risking access to private ones. It lives directly in the native Photos share sheet: select photos, tap the extension icon, and hand the phone over. The recipient can see only the chosen photos, with nothing else accessible.
 
 ## Magic Moment
-[FILL IN — see Onboarding above]
+The user is already in Photos, already looking at the photo they want to share. They tap Share, tap the extension icon, and hand over the phone in the same motion they were already making. There is no setup, no app switching, no explanation, and no awkward pause. The recipient sees exactly what was intended. The user feels nothing because the anxiety has disappeared.
+
+## Product Philosophy
+This is not a photo vault, locker, or privacy bunker. It is not a separate app people need to remember to open. It is not feature-heavy, configurable, or educational. It should feel native, invisible, and obvious: a tiny extension that removes one specific anxiety at the exact moment it appears.
 
 ---
 
@@ -24,7 +19,7 @@
 - **Styling:** [e.g. Tailwind CSS]
 
 ## Map
-*On first run: scan the repo and write a one-line description per top-level folder. Update when structure changes. Telegraph style.*
+- No top-level folders yet; root contains project memory docs only.
 
 ---
 
