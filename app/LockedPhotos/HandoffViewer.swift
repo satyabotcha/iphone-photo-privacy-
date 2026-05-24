@@ -4,6 +4,7 @@ struct HandoffViewer: View {
     let photos: [SelectedPhoto]
     let onEnd: () -> Void
     @State private var currentIndex = 0
+    @State private var isChromeVisible = true
 
     var body: some View {
         ZStack {
@@ -19,15 +20,25 @@ struct HandoffViewer: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation(.easeInOut(duration: 0.18)) {
+                    isChromeVisible.toggle()
+                }
+            }
 
-            VStack(spacing: 0) {
-                topControls
+            if isChromeVisible {
+                VStack(spacing: 0) {
+                    topControls
 
-                Spacer()
+                    Spacer()
 
-                thumbnailStrip
+                    thumbnailStrip
+                }
+                .transition(.opacity)
             }
         }
+        .statusBarHidden(!isChromeVisible)
     }
 
     private var topControls: some View {

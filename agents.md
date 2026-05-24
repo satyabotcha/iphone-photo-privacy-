@@ -31,7 +31,7 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
   - Share Extension: `com.apple.share-services`, appears in the app/share destination area.
   - Action Extension: `com.apple.ui-services`, appears in the action list and requests full-screen presentation.
 - Both extensions currently display as "Locked Photos" and reuse the same loader/viewer code.
-- Locked mode should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip.
+- Locked mode should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip. Tap the photo to hide all chrome/status bar for native full-screen viewing; tap again to bring controls back.
 
 ## Instructions
 
