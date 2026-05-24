@@ -1,0 +1,645 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		083E24C76097C41138166B04 /* SelectedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B4C798731520188878444 /* SelectedPhoto.swift */; };
+		1ABB56E6FE969FD42A52FAD2 /* LockedPhotosActionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		291F6E776B5DAC5E2ACD8073 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFCA29EA43EAB8891126EB /* ContentView.swift */; };
+		30AB99CDAB3C15B7AE08C9DA /* LockedPhotosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B41BCF410F36B0A3E2954B9 /* LockedPhotosApp.swift */; };
+		33578D8BE9DDBDC4CC4815BF /* LockedPhotosShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		33D120913A2C0651BFF35CBD /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */; };
+		3DF910E75945A4901F33E380 /* SelectedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B4C798731520188878444 /* SelectedPhoto.swift */; };
+		64E9CA02B9A7F8F57FDBF803 /* LockedPhotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EBBED4D9C57ECE8E3DF193 /* LockedPhotosUITests.swift */; };
+		6A4DE4CD3123FAC7F5E4CC15 /* HandoffViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219971FC054C2E62EC000388 /* HandoffViewer.swift */; };
+		7BA1037A9D33C3ADCC1C8DDA /* DemoPhotoFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D46F474909140BE4724EAE /* DemoPhotoFactory.swift */; };
+		7CECA127B6EC1A22B4FCF992 /* ZoomableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FA0891896384E0C113717 /* ZoomableImage.swift */; };
+		8337C34BAF252BB1A42EF674 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE3D46FA53B1D9F1B45736C0 /* Assets.xcassets */; };
+		859C0008F8B5402C23FC9221 /* ZoomableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FA0891896384E0C113717 /* ZoomableImage.swift */; };
+		9F5FD9CF1C453CDFDBBF8A16 /* SharedPhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */; };
+		A94EAC0D758B5CCED2C0DA06 /* ShareExtensionRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */; };
+		AC2965DFD4C32EA46574E121 /* ZoomableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FA0891896384E0C113717 /* ZoomableImage.swift */; };
+		ADFA4D76499662F71D9B68EC /* HandoffViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219971FC054C2E62EC000388 /* HandoffViewer.swift */; };
+		CB2F8852842207873472E545 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */; };
+		D5D3B798EEF71BCC1CAD3F9D /* HandoffViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219971FC054C2E62EC000388 /* HandoffViewer.swift */; };
+		D7C4CCD2CD7D6B287A0D1431 /* SelectedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B4C798731520188878444 /* SelectedPhoto.swift */; };
+		E140719A0D157A9ADA1B3F89 /* SharedPhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */; };
+		FF77287BFBFBBBF498B1AF3B /* ShareExtensionRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC873143D7F7B3CB155CCF21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AED69F9BA6882CDDE8B65B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2EE6ABB1C3078579933AE060;
+			remoteInfo = LockedPhotos;
+		};
+		BE3E8EF922E4BBECFB7F2A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AED69F9BA6882CDDE8B65B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 870105FDEA11639FC6DA08F2;
+			remoteInfo = LockedPhotosActionExtension;
+		};
+		C907A40B9B33737843680570 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AED69F9BA6882CDDE8B65B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 110E4C3A180992BEF17B5AE6;
+			remoteInfo = LockedPhotosShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A7977F55CDB78EAEE2F45561 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				33578D8BE9DDBDC4CC4815BF /* LockedPhotosShareExtension.appex in Embed Foundation Extensions */,
+				1ABB56E6FE969FD42A52FAD2 /* LockedPhotosActionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0B41BCF410F36B0A3E2954B9 /* LockedPhotosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotosApp.swift; sourceTree = "<group>"; };
+		201FA0891896384E0C113717 /* ZoomableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableImage.swift; sourceTree = "<group>"; };
+		219971FC054C2E62EC000388 /* HandoffViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandoffViewer.swift; sourceTree = "<group>"; };
+		2BDFCA29EA43EAB8891126EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2CC2DEF4B1F51880BD2AF16A /* LockedPhotos.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LockedPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionRootView.swift; sourceTree = "<group>"; };
+		39EBBED4D9C57ECE8E3DF193 /* LockedPhotosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotosUITests.swift; sourceTree = "<group>"; };
+		45D46F474909140BE4724EAE /* DemoPhotoFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPhotoFactory.swift; sourceTree = "<group>"; };
+		47F3A7006EB3E77DD84F4C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPhotoLoader.swift; sourceTree = "<group>"; };
+		6C580AF17A40A5D55B036771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6DC4BB8D2530035447CE42F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LockedPhotosShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LockedPhotosActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E4706ED7B71607F9E4BFDD0C /* LockedPhotosUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LockedPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC7B4C798731520188878444 /* SelectedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPhoto.swift; sourceTree = "<group>"; };
+		EE3D46FA53B1D9F1B45736C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0EA688F23209C2AFA20D0775 = {
+			isa = PBXGroup;
+			children = (
+				1892D27237A4B078C54ABA69 /* LockedPhotos */,
+				E0A6077B5C0D8ACB6EC54F3C /* LockedPhotosShareExtension */,
+				7B5FAC3C727B3A22F389ABE6 /* LockedPhotosUITests */,
+				4A35068BA89BEB942333BB19 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1892D27237A4B078C54ABA69 /* LockedPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				EE3D46FA53B1D9F1B45736C0 /* Assets.xcassets */,
+				2BDFCA29EA43EAB8891126EB /* ContentView.swift */,
+				45D46F474909140BE4724EAE /* DemoPhotoFactory.swift */,
+				219971FC054C2E62EC000388 /* HandoffViewer.swift */,
+				6C580AF17A40A5D55B036771 /* Info.plist */,
+				0B41BCF410F36B0A3E2954B9 /* LockedPhotosApp.swift */,
+				EC7B4C798731520188878444 /* SelectedPhoto.swift */,
+				201FA0891896384E0C113717 /* ZoomableImage.swift */,
+			);
+			path = LockedPhotos;
+			sourceTree = "<group>";
+		};
+		4A35068BA89BEB942333BB19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CC2DEF4B1F51880BD2AF16A /* LockedPhotos.app */,
+				CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */,
+				A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */,
+				E4706ED7B71607F9E4BFDD0C /* LockedPhotosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B5FAC3C727B3A22F389ABE6 /* LockedPhotosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				47F3A7006EB3E77DD84F4C79 /* Info.plist */,
+				39EBBED4D9C57ECE8E3DF193 /* LockedPhotosUITests.swift */,
+			);
+			path = LockedPhotosUITests;
+			sourceTree = "<group>";
+		};
+		E0A6077B5C0D8ACB6EC54F3C /* LockedPhotosShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6DC4BB8D2530035447CE42F1 /* Info.plist */,
+				6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */,
+				301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */,
+				DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */,
+			);
+			path = LockedPhotosShareExtension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		110E4C3A180992BEF17B5AE6 /* LockedPhotosShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58397A05317BCC5F00E5D6B4 /* Build configuration list for PBXNativeTarget "LockedPhotosShareExtension" */;
+			buildPhases = (
+				23AF85A28716D6B3045A7901 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockedPhotosShareExtension;
+			packageProductDependencies = (
+			);
+			productName = LockedPhotosShareExtension;
+			productReference = A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		19DF55F37E532AC7DE35BB2D /* LockedPhotosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B87F628B2578B9997BA73ABC /* Build configuration list for PBXNativeTarget "LockedPhotosUITests" */;
+			buildPhases = (
+				5D49D30302BDE994D1BE30CB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				37B42FFA05FFAEC9AAF8388D /* PBXTargetDependency */,
+			);
+			name = LockedPhotosUITests;
+			packageProductDependencies = (
+			);
+			productName = LockedPhotosUITests;
+			productReference = E4706ED7B71607F9E4BFDD0C /* LockedPhotosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		2EE6ABB1C3078579933AE060 /* LockedPhotos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD96E8C2FAF2F29A702F36A4 /* Build configuration list for PBXNativeTarget "LockedPhotos" */;
+			buildPhases = (
+				26870EB9303C1D614CE47D1B /* Sources */,
+				C5E083802A9DA2DCC73B7FEA /* Resources */,
+				A7977F55CDB78EAEE2F45561 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				143E9DAFB01ED9A85B27AEE0 /* PBXTargetDependency */,
+				937FD563EFA9C7F6601376C1 /* PBXTargetDependency */,
+			);
+			name = LockedPhotos;
+			packageProductDependencies = (
+			);
+			productName = LockedPhotos;
+			productReference = 2CC2DEF4B1F51880BD2AF16A /* LockedPhotos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		870105FDEA11639FC6DA08F2 /* LockedPhotosActionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AC62EC78644F653314B0552 /* Build configuration list for PBXNativeTarget "LockedPhotosActionExtension" */;
+			buildPhases = (
+				B1C5ED0E05C31138F38F1CF8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockedPhotosActionExtension;
+			packageProductDependencies = (
+			);
+			productName = LockedPhotosActionExtension;
+			productReference = CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2AED69F9BA6882CDDE8B65B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					19DF55F37E532AC7DE35BB2D = {
+						TestTargetID = 2EE6ABB1C3078579933AE060;
+					};
+				};
+			};
+			buildConfigurationList = 04563C4AC3FAF4A3B16B32C6 /* Build configuration list for PBXProject "LockedPhotos" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0EA688F23209C2AFA20D0775;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4A35068BA89BEB942333BB19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2EE6ABB1C3078579933AE060 /* LockedPhotos */,
+				870105FDEA11639FC6DA08F2 /* LockedPhotosActionExtension */,
+				110E4C3A180992BEF17B5AE6 /* LockedPhotosShareExtension */,
+				19DF55F37E532AC7DE35BB2D /* LockedPhotosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C5E083802A9DA2DCC73B7FEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8337C34BAF252BB1A42EF674 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23AF85A28716D6B3045A7901 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D3B798EEF71BCC1CAD3F9D /* HandoffViewer.swift in Sources */,
+				3DF910E75945A4901F33E380 /* SelectedPhoto.swift in Sources */,
+				A94EAC0D758B5CCED2C0DA06 /* ShareExtensionRootView.swift in Sources */,
+				33D120913A2C0651BFF35CBD /* ShareViewController.swift in Sources */,
+				9F5FD9CF1C453CDFDBBF8A16 /* SharedPhotoLoader.swift in Sources */,
+				859C0008F8B5402C23FC9221 /* ZoomableImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26870EB9303C1D614CE47D1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				291F6E776B5DAC5E2ACD8073 /* ContentView.swift in Sources */,
+				7BA1037A9D33C3ADCC1C8DDA /* DemoPhotoFactory.swift in Sources */,
+				6A4DE4CD3123FAC7F5E4CC15 /* HandoffViewer.swift in Sources */,
+				30AB99CDAB3C15B7AE08C9DA /* LockedPhotosApp.swift in Sources */,
+				083E24C76097C41138166B04 /* SelectedPhoto.swift in Sources */,
+				AC2965DFD4C32EA46574E121 /* ZoomableImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D49D30302BDE994D1BE30CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64E9CA02B9A7F8F57FDBF803 /* LockedPhotosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1C5ED0E05C31138F38F1CF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADFA4D76499662F71D9B68EC /* HandoffViewer.swift in Sources */,
+				D7C4CCD2CD7D6B287A0D1431 /* SelectedPhoto.swift in Sources */,
+				FF77287BFBFBBBF498B1AF3B /* ShareExtensionRootView.swift in Sources */,
+				CB2F8852842207873472E545 /* ShareViewController.swift in Sources */,
+				E140719A0D157A9ADA1B3F89 /* SharedPhotoLoader.swift in Sources */,
+				7CECA127B6EC1A22B4FCF992 /* ZoomableImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		143E9DAFB01ED9A85B27AEE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 110E4C3A180992BEF17B5AE6 /* LockedPhotosShareExtension */;
+			targetProxy = C907A40B9B33737843680570 /* PBXContainerItemProxy */;
+		};
+		37B42FFA05FFAEC9AAF8388D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2EE6ABB1C3078579933AE060 /* LockedPhotos */;
+			targetProxy = BC873143D7F7B3CB155CCF21 /* PBXContainerItemProxy */;
+		};
+		937FD563EFA9C7F6601376C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 870105FDEA11639FC6DA08F2 /* LockedPhotosActionExtension */;
+			targetProxy = BE3E8EF922E4BBECFB7F2A0C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1003BA081EB6717004718C07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = LockedPhotos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotos;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		187C49765F521A977FBD5D77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				INFOPLIST_FILE = LockedPhotosShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotos.ShareExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		36381ABA32BCDD258696ABF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		6D494F8E6FD8317E17B46E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				INFOPLIST_FILE = LockedPhotosActionExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotos.ActionExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		71201C610349579A9AD25906 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LockedPhotosUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotosUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LockedPhotos;
+			};
+			name = Debug;
+		};
+		88827918C33F0FD55A12D0ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				INFOPLIST_FILE = LockedPhotosActionExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotos.ActionExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8EF3907778B1918678AA3E43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				INFOPLIST_FILE = LockedPhotosShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotos.ShareExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9615B5EF1168727514CBFFC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = LockedPhotos/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotos;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A14D3ECA128683FAC3B3AF2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = LockedPhotosUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.satyabotcha.LockedPhotosUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LockedPhotos;
+			};
+			name = Release;
+		};
+		E3B407880337661E2C5CB194 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04563C4AC3FAF4A3B16B32C6 /* Build configuration list for PBXProject "LockedPhotos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3B407880337661E2C5CB194 /* Debug */,
+				36381ABA32BCDD258696ABF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4AC62EC78644F653314B0552 /* Build configuration list for PBXNativeTarget "LockedPhotosActionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D494F8E6FD8317E17B46E8C /* Debug */,
+				88827918C33F0FD55A12D0ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		58397A05317BCC5F00E5D6B4 /* Build configuration list for PBXNativeTarget "LockedPhotosShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				187C49765F521A977FBD5D77 /* Debug */,
+				8EF3907778B1918678AA3E43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B87F628B2578B9997BA73ABC /* Build configuration list for PBXNativeTarget "LockedPhotosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71201C610349579A9AD25906 /* Debug */,
+				A14D3ECA128683FAC3B3AF2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CD96E8C2FAF2F29A702F36A4 /* Build configuration list for PBXNativeTarget "LockedPhotos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9615B5EF1168727514CBFFC6 /* Debug */,
+				1003BA081EB6717004718C07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2AED69F9BA6882CDDE8B65B8 /* Project object */;
+}

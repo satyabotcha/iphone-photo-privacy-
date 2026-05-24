@@ -12,16 +12,26 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
 ---
 
 ## Tech Stack
-- **Language:** [e.g. TypeScript]
-- **Frontend:** [e.g. React, Next.js]
-- **Backend:** [e.g. Node, Vercel]
-- **Database:** [e.g. Postgres, Supabase]
-- **Styling:** [e.g. Tailwind CSS]
+- **Language:** Swift 5.9
+- **UI:** SwiftUI with small UIKit bridges where needed
+- **Platform:** iOS 17+
+- **Project generation:** XcodeGen via `app/project.yml`
 
 ## Map
-- No top-level folders yet; root contains project memory docs only.
+- `app/LockedPhotos`: containing iOS app and shared viewer UI
+- `app/LockedPhotosShareExtension`: share/action extension host code and selected-photo loader
+- `app/LockedPhotosActionExtension`: Action Extension plist; reuses the share extension host code
+- `app/LockedPhotosUITests`: UI tests for demo handoff flow
+- `app/project.yml`: source of truth for the Xcode project; run `xcodegen generate` after target changes
 
 ---
+
+## Current Product/Technical Decisions
+- Ship both entry points while testing user flow:
+  - Share Extension: `com.apple.share-services`, appears in the app/share destination area.
+  - Action Extension: `com.apple.ui-services`, appears in the action list and requests full-screen presentation.
+- Both extensions currently display as "Locked Photos" and reuse the same loader/viewer code.
+- Locked mode should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip.
 
 ## Instructions
 
