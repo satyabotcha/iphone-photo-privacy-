@@ -140,7 +140,7 @@ struct ContentView: View {
                 continue
             }
 
-            loadedPhotos.append(SelectedPhoto(image: image))
+            loadedPhotos.append(SelectedPhoto(image: image, info: PhotoInfo.make(fromImageData: data)))
         }
 
         selectedPhotos = loadedPhotos

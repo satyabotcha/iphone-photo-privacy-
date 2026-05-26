@@ -33,6 +33,7 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
   - Action Extension: `com.apple.ui-services`, appears in the action list and requests full-screen presentation.
 - Both extensions currently display as "Don't Swipe" and reuse the same loader/viewer code.
 - Locked mode should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip. Tap the photo to hide all chrome/status bar for native full-screen viewing; tap again to bring controls back.
+- Selected photos preserve basic embedded metadata when available: capture date and GPS coordinates are shown with the visible chrome and disappear when chrome is hidden.
 
 ## Instructions
 

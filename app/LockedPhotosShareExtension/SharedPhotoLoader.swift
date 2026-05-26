@@ -9,8 +9,8 @@ struct SharedPhotoLoader {
         var photos: [SelectedPhoto] = []
 
         for provider in providers {
-            if let image = try await loadImage(from: provider) {
-                photos.append(SelectedPhoto(image: image))
+            if let photo = try await loadPhoto(from: provider) {
+                photos.append(photo)
             }
         }
 
@@ -26,27 +26,36 @@ struct SharedPhotoLoader {
             } ?? []
     }
 
-    private func loadImage(from provider: NSItemProvider) async throws -> UIImage? {
-        if provider.canLoadObject(ofClass: UIImage.self) {
-            return try await withCheckedThrowingContinuation { continuation in
-                _ = provider.loadObject(ofClass: UIImage.self) { object, error in
-                    if let error {
-                        continuation.resume(throwing: error)
-                    } else {
-                        continuation.resume(returning: object as? UIImage)
-                    }
+    private func loadPhoto(from provider: NSItemProvider) async throws -> SelectedPhoto? {
+        if let data = try await loadImageData(from: provider),
+           let image = UIImage(data: data) {
+            return SelectedPhoto(image: image, info: PhotoInfo.make(fromImageData: data))
+        }
+
+        guard provider.canLoadObject(ofClass: UIImage.self) else { return nil }
+
+        return try await withCheckedThrowingContinuation { continuation in
+            _ = provider.loadObject(ofClass: UIImage.self) { object, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else if let image = object as? UIImage {
+                    continuation.resume(returning: SelectedPhoto(image: image))
+                } else {
+                    continuation.resume(returning: nil)
                 }
             }
         }
+    }
+
+    private func loadImageData(from provider: NSItemProvider) async throws -> Data? {
+        guard provider.hasItemConformingToTypeIdentifier(UTType.image.identifier) else { return nil }
 
         return try await withCheckedThrowingContinuation { continuation in
             provider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, error in
                 if let error {
                     continuation.resume(throwing: error)
-                } else if let data {
-                    continuation.resume(returning: UIImage(data: data))
                 } else {
-                    continuation.resume(returning: nil)
+                    continuation.resume(returning: data)
                 }
             }
         }

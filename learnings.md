@@ -24,3 +24,7 @@
 ### [2026-05-24] Physical device build preflight
 **Context:** Preflighting a build for the connected "Satya's iphone" after simulator verification passed.
 **Learning:** `xcodebuild` saw the paired iPhone 16 but timed out because the developer disk image could not be mounted. Resolve the device/Xcode pairing state before relying on CLI device builds; simulator builds and tests still work.
+
+### [2026-05-26] SwiftUI overlay accessibility
+**Context:** Verifying Photos-like metadata chrome in the handoff viewer with UI tests.
+**Learning:** A combined accessibility identifier on a container did not surface reliably for SwiftUI overlay text. Put identifiers on the visible `Text` elements and assert their disappearance when the chrome is hidden.

@@ -6,6 +6,10 @@ struct HandoffViewer: View {
     @State private var currentIndex = 0
     @State private var isChromeVisible = true
 
+    private var currentPhoto: SelectedPhoto? {
+        photos.indices.contains(currentIndex) ? photos[currentIndex] : nil
+    }
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -57,6 +61,12 @@ struct HandoffViewer: View {
 
             Spacer()
 
+            if let info = currentPhoto?.info {
+                photoInfo(info)
+
+                Spacer()
+            }
+
             Text("\(currentIndex + 1) / \(photos.count)")
                 .font(.callout.weight(.semibold))
                 .foregroundStyle(.white)
@@ -67,6 +77,26 @@ struct HandoffViewer: View {
                 .accessibilityIdentifier("handoffCounter")
         }
         .padding()
+    }
+
+    private func photoInfo(_ info: PhotoInfo) -> some View {
+        VStack(spacing: 2) {
+            if let dateText = info.dateText {
+                Text(dateText)
+                    .font(.callout.weight(.semibold))
+                    .accessibilityIdentifier("photoInfoDateLabel")
+            }
+
+            if let locationText = info.locationText {
+                Text(locationText)
+                    .font(.caption)
+                    .foregroundStyle(.white.opacity(0.78))
+                    .accessibilityIdentifier("photoInfoLocationLabel")
+            }
+        }
+        .foregroundStyle(.white)
+        .lineLimit(1)
+        .multilineTextAlignment(.center)
     }
 
     private var thumbnailStrip: some View {

@@ -3,13 +3,13 @@ import UIKit
 enum DemoPhotoFactory {
     static func makePhotos() -> [SelectedPhoto] {
         [
-            makePhoto(title: "One", colors: [UIColor.systemIndigo, UIColor.systemTeal]),
-            makePhoto(title: "Two", colors: [UIColor.systemPink, UIColor.systemOrange]),
-            makePhoto(title: "Three", colors: [UIColor.systemGreen, UIColor.systemBlue])
+            makePhoto(title: "One", colors: [UIColor.systemIndigo, UIColor.systemTeal], dayOffset: 0),
+            makePhoto(title: "Two", colors: [UIColor.systemPink, UIColor.systemOrange], dayOffset: -1),
+            makePhoto(title: "Three", colors: [UIColor.systemGreen, UIColor.systemBlue], dayOffset: -2)
         ]
     }
 
-    private static func makePhoto(title: String, colors: [UIColor]) -> SelectedPhoto {
+    private static func makePhoto(title: String, colors: [UIColor], dayOffset: Int) -> SelectedPhoto {
         let size = CGSize(width: 1200, height: 1600)
         let renderer = UIGraphicsImageRenderer(size: size)
 
@@ -50,6 +50,13 @@ enum DemoPhotoFactory {
             )
         }
 
-        return SelectedPhoto(image: image)
+        return SelectedPhoto(
+            image: image,
+            info: PhotoInfo(
+                capturedAt: Calendar.current.date(byAdding: .day, value: dayOffset, to: .now),
+                latitude: 51.5072,
+                longitude: -0.1276
+            )
+        )
     }
 }
