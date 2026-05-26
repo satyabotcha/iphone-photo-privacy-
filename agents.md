@@ -27,10 +27,11 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
 ---
 
 ## Current Product/Technical Decisions
+- Public user-facing name is "Don't Swipe"; keep internal target/module paths as `LockedPhotos` unless doing an explicit migration.
 - Ship both entry points while testing user flow:
   - Share Extension: `com.apple.share-services`, appears in the app/share destination area.
   - Action Extension: `com.apple.ui-services`, appears in the action list and requests full-screen presentation.
-- Both extensions currently display as "Locked Photos" and reuse the same loader/viewer code.
+- Both extensions currently display as "Don't Swipe" and reuse the same loader/viewer code.
 - Locked mode should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip. Tap the photo to hide all chrome/status bar for native full-screen viewing; tap again to bring controls back.
 
 ## Instructions

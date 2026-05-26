@@ -36,6 +36,6 @@ private enum ShareExtensionError: LocalizedError {
     case cancelled
 
     var errorDescription: String? {
-        "Locked Photos was cancelled."
+        "Don't Swipe was cancelled."
     }
 }

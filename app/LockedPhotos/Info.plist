@@ -17,7 +17,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CFBundleDisplayName</key>
-	<string>Locked Photos</string>
+	<string>Don't Swipe</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select only the photos you want to show in handoff mode.</string>
 	<key>UILaunchScreen</key>
