@@ -1,3 +1,4 @@
+import LocalAuthentication
 import SwiftUI
 
 struct HandoffViewer: View {
@@ -5,6 +6,7 @@ struct HandoffViewer: View {
     let onEnd: () -> Void
     @State private var currentIndex = 0
     @State private var isChromeVisible = true
+    @State private var isAuthenticatingToEnd = false
 
     private var canvasColor: UIColor {
         isChromeVisible ? .systemBackground : .black
@@ -55,7 +57,9 @@ struct HandoffViewer: View {
     private var topControls: some View {
         HStack(alignment: .top, spacing: 10) {
             Button {
-                onEnd()
+                Task {
+                    await endHandoffAfterOwnerUnlock()
+                }
             } label: {
                 Label("End", systemImage: "chevron.left")
                     .labelStyle(.iconOnly)
@@ -65,7 +69,8 @@ struct HandoffViewer: View {
             }
             .buttonStyle(.plain)
             .foregroundStyle(.primary)
-            .accessibilityLabel("End handoff")
+            .disabled(isAuthenticatingToEnd)
+            .accessibilityLabel("Unlock to end handoff")
             .accessibilityIdentifier("endHandoffButton")
 
             Spacer()
@@ -87,8 +92,8 @@ struct HandoffViewer: View {
             }
             .buttonStyle(.plain)
             .foregroundStyle(.primary)
-                .accessibilityLabel("Photo \(currentIndex + 1) of \(photos.count)")
-                .accessibilityIdentifier("handoffCounter")
+            .accessibilityLabel("Photo \(currentIndex + 1) of \(photos.count)")
+            .accessibilityIdentifier("handoffCounter")
         }
         .padding(.horizontal, 16)
         .padding(.top, 8)
@@ -159,6 +164,40 @@ struct HandoffViewer: View {
                 }
             }
             .frame(height: 86)
+        }
+    }
+
+    @MainActor
+    private func endHandoffAfterOwnerUnlock() async {
+        guard !isAuthenticatingToEnd else { return }
+
+        isAuthenticatingToEnd = true
+        let isOwnerUnlocked = await HandoffExitAuthenticator.authenticateOwner()
+        isAuthenticatingToEnd = false
+
+        guard isOwnerUnlocked else { return }
+
+        onEnd()
+    }
+}
+
+private enum HandoffExitAuthenticator {
+    static func authenticateOwner() async -> Bool {
+        let context = LAContext()
+        context.localizedCancelTitle = "Cancel"
+
+        var error: NSError?
+        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+            return false
+        }
+
+        return await withCheckedContinuation { continuation in
+            context.evaluatePolicy(
+                .deviceOwnerAuthentication,
+                localizedReason: "Unlock to leave Don't Swipe and return to Photos."
+            ) { success, _ in
+                continuation.resume(returning: success)
+            }
         }
     }
 }

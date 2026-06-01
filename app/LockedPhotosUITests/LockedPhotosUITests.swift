@@ -21,6 +21,7 @@ final class LockedPhotosUITests: XCTestCase {
         XCTAssertTrue(counter.waitForExistence(timeout: 3))
         XCTAssertEqual(counter.label, "Photo 1 of 3")
         XCTAssertTrue(app.buttons["endHandoffButton"].waitForExistence(timeout: 3))
+        XCTAssertEqual(app.buttons["endHandoffButton"].label, "Unlock to end handoff")
         XCTAssertTrue(app.staticTexts["photoInfoDateLabel"].waitForExistence(timeout: 3))
         XCTAssertFalse(app.staticTexts["photoInfoDateLabel"].label.contains(" at "))
         XCTAssertTrue(app.staticTexts["photoInfoTimeLabel"].waitForExistence(timeout: 3))
@@ -57,6 +58,9 @@ final class LockedPhotosUITests: XCTestCase {
         XCTAssertEqual(counter.label, "Photo 3 of 3")
 
         zoomView.pinch(withScale: 2.0, velocity: 1.0)
+
+        app.buttons["endHandoffButton"].tap()
+        XCTAssertTrue(counter.waitForExistence(timeout: 1))
     }
 
     private func waitForNonexistence(of element: XCUIElement, timeout: TimeInterval = 2) {

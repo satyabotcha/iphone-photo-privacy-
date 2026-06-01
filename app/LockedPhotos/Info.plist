@@ -20,6 +20,8 @@
 	<string>Don't Swipe</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Select only the photos you want to show in handoff mode.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Unlock to end the handoff and return to your photos.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>

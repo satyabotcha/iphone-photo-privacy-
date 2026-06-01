@@ -36,3 +36,7 @@
 ### [2026-06-01] EXIF wall-clock display
 **Context:** Matching the native Photos timestamp in the handoff viewer.
 **Learning:** `DateTimeOriginal` EXIF values are camera wall-clock timestamps, not timezone-shiftable instants. Parse and display them in a fixed display timezone so a photo captured at 9:55 pm does not render as 10:55 pm on a device currently using daylight-saving time.
+
+### [2026-06-01] Simulator biometric command availability
+**Context:** Verifying Face ID-gated exit from the handoff viewer on the iPhone 17 simulator.
+**Learning:** This local Xcode `simctl` does not expose the older `biometric` subcommand, so automated Face ID match/fail simulation from shell is unavailable. Use UI tests for fail-closed behavior and verify successful authentication on a physical device or through Simulator UI features when available.
