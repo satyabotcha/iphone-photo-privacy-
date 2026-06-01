@@ -6,6 +6,9 @@ final class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        modalPresentationStyle = .fullScreen
+        view.backgroundColor = .systemBackground
+
         let rootView = ShareExtensionRootView(
             loader: SharedPhotoLoader(extensionContext: extensionContext),
             onDone: { [weak self] in
@@ -17,6 +20,8 @@ final class ShareViewController: UIViewController {
         )
 
         let hostingController = UIHostingController(rootView: rootView)
+        hostingController.modalPresentationStyle = .fullScreen
+        hostingController.view.backgroundColor = .clear
         addChild(hostingController)
         view.addSubview(hostingController.view)
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false

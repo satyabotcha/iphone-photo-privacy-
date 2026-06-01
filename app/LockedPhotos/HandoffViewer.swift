@@ -6,17 +6,22 @@ struct HandoffViewer: View {
     @State private var currentIndex = 0
     @State private var isChromeVisible = true
 
+    private var canvasColor: UIColor {
+        isChromeVisible ? .systemBackground : .black
+    }
+
     private var currentPhoto: SelectedPhoto? {
         photos.indices.contains(currentIndex) ? photos[currentIndex] : nil
     }
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Color(uiColor: canvasColor)
+                .ignoresSafeArea()
 
             TabView(selection: $currentIndex) {
                 ForEach(Array(photos.enumerated()), id: \.element.id) { index, photo in
-                    ZoomableImage(image: photo.image)
+                    ZoomableImage(image: photo.image, backgroundColor: canvasColor)
                         .ignoresSafeArea()
                         .tag(index)
                         .accessibilityLabel("Handoff photo \(index + 1) of \(photos.count)")
@@ -43,40 +48,47 @@ struct HandoffViewer: View {
             }
         }
         .statusBarHidden(!isChromeVisible)
+        .preferredColorScheme(isChromeVisible ? .light : .dark)
+        .animation(.easeInOut(duration: 0.18), value: isChromeVisible)
     }
 
     private var topControls: some View {
-        HStack {
+        HStack(alignment: .top, spacing: 10) {
             Button {
                 onEnd()
             } label: {
-                Label("End", systemImage: "xmark")
+                Label("End", systemImage: "chevron.left")
                     .labelStyle(.iconOnly)
-                    .frame(width: 44, height: 44)
-                    .background(.black.opacity(0.55), in: Circle())
+                    .font(.title3.weight(.semibold))
+                    .frame(width: 52, height: 52)
+                    .background(.regularMaterial, in: Circle())
             }
             .buttonStyle(.plain)
-            .foregroundStyle(.white)
+            .foregroundStyle(.primary)
             .accessibilityLabel("End handoff")
+            .accessibilityIdentifier("endHandoffButton")
 
             Spacer()
 
             if let info = currentPhoto?.info {
                 photoInfo(info)
+                    .frame(maxWidth: 280)
+                    .layoutPriority(1)
 
                 Spacer()
             }
 
             Text("\(currentIndex + 1) / \(photos.count)")
                 .font(.callout.weight(.semibold))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(.black.opacity(0.55), in: Capsule())
+                .foregroundStyle(.primary)
+                .frame(minWidth: 52, minHeight: 52)
+                .padding(.horizontal, 4)
+                .background(.regularMaterial, in: Capsule())
                 .accessibilityLabel("Photo \(currentIndex + 1) of \(photos.count)")
                 .accessibilityIdentifier("handoffCounter")
         }
-        .padding()
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
     }
 
     private func photoInfo(_ info: PhotoInfo) -> some View {
@@ -90,13 +102,16 @@ struct HandoffViewer: View {
             if let locationText = info.locationText {
                 Text(locationText)
                     .font(.caption)
-                    .foregroundStyle(.white.opacity(0.78))
+                    .foregroundStyle(.secondary)
                     .accessibilityIdentifier("photoInfoLocationLabel")
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(.primary)
         .lineLimit(1)
         .multilineTextAlignment(.center)
+        .padding(.horizontal, 18)
+        .padding(.vertical, 8)
+        .background(.regularMaterial, in: Capsule())
     }
 
     private var thumbnailStrip: some View {
@@ -117,6 +132,7 @@ struct HandoffViewer: View {
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4, style: .continuous)
                                         .stroke(index == currentIndex ? .white : .clear, lineWidth: 2)
+                                        .shadow(color: .black.opacity(index == currentIndex ? 0.35 : 0), radius: 2, y: 1)
                                 }
                         }
                         .buttonStyle(.plain)
@@ -126,10 +142,10 @@ struct HandoffViewer: View {
                     }
                 }
                 .padding(.horizontal, 16)
-                .padding(.vertical, 10)
+                .padding(.vertical, 8)
             }
-            .frame(height: 72)
-            .background(.black.opacity(0.72))
+            .frame(height: 70)
+            .padding(.bottom, 16)
             .accessibilityIdentifier("handoffThumbnailStrip")
             .onChange(of: currentIndex) { _, newIndex in
                 withAnimation(.easeInOut(duration: 0.18)) {

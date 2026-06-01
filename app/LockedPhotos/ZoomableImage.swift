@@ -3,6 +3,7 @@ import UIKit
 
 struct ZoomableImage: UIViewRepresentable {
     let image: UIImage
+    let backgroundColor: UIColor
 
     func makeUIView(context: Context) -> UIScrollView {
         let scrollView = UIScrollView()
@@ -11,7 +12,7 @@ struct ZoomableImage: UIViewRepresentable {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        scrollView.backgroundColor = .black
+        scrollView.backgroundColor = backgroundColor
         scrollView.delegate = context.coordinator
         scrollView.maximumZoomScale = 5
         scrollView.minimumZoomScale = 1
@@ -36,6 +37,7 @@ struct ZoomableImage: UIViewRepresentable {
     }
 
     func updateUIView(_ scrollView: UIScrollView, context: Context) {
+        scrollView.backgroundColor = backgroundColor
         context.coordinator.imageView?.image = image
     }
 

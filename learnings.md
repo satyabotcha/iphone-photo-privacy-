@@ -28,3 +28,7 @@
 ### [2026-05-26] SwiftUI overlay accessibility
 **Context:** Verifying Photos-like metadata chrome in the handoff viewer with UI tests.
 **Learning:** A combined accessibility identifier on a container did not surface reliably for SwiftUI overlay text. Put identifiers on the visible `Text` elements and assert their disappearance when the chrome is hidden.
+
+### [2026-06-01] Photos-like handoff chrome
+**Context:** Making the handoff viewer feel closer to the native Photos app.
+**Learning:** Keep the viewer chrome state light and system-backed, then switch the canvas to black only when chrome is hidden. Action extensions can request full-screen presentation in the plist; Share extension hosts may still constrain the outer sheet, so the Action extension remains the cleanest Photos-like handoff path.

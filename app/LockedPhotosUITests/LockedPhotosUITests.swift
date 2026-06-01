@@ -20,6 +20,7 @@ final class LockedPhotosUITests: XCTestCase {
         let counter = app.staticTexts["handoffCounter"]
         XCTAssertTrue(counter.waitForExistence(timeout: 3))
         XCTAssertEqual(counter.label, "Photo 1 of 3")
+        XCTAssertTrue(app.buttons["endHandoffButton"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.staticTexts["photoInfoDateLabel"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.staticTexts["photoInfoLocationLabel"].exists)
 
@@ -34,10 +35,12 @@ final class LockedPhotosUITests: XCTestCase {
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         waitForNonexistence(of: app.staticTexts["photoInfoDateLabel"])
         XCTAssertFalse(counter.exists)
+        XCTAssertFalse(app.buttons["endHandoffButton"].exists)
         XCTAssertFalse(app.scrollViews["handoffThumbnailStrip"].exists)
 
         app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         XCTAssertTrue(counter.waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["endHandoffButton"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.staticTexts["photoInfoDateLabel"].waitForExistence(timeout: 3))
         XCTAssertTrue(app.scrollViews["handoffThumbnailStrip"].waitForExistence(timeout: 3))
 
