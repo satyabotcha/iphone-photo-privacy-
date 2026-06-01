@@ -42,10 +42,12 @@ struct ContentView: View {
                     .padding(.top, 4)
 
                 VStack(alignment: .leading, spacing: 9) {
-                    setupStep(number: 1, title: "Open Photos")
-                    setupStep(number: 2, title: "Tap Share, then More")
-                    setupStep(number: 3, title: "Add Don't Swipe to Favorites")
-                    setupStep(number: 4, title: "Tap Don't Swipe to lock it")
+                    setupStep(number: 1, title: "In Photos, select photos and tap Share")
+                    setupStep(number: 2, title: "Tap More in the app row")
+                    setupStep(number: 3, title: "Tap Edit")
+                    setupStep(number: 4, title: "Tap + next to Don't Swipe")
+                    setupStep(number: 5, title: "Confirm Don't Swipe is in Favorites")
+                    setupStep(number: 6, title: "Tap Done, then Don't Swipe")
                 }
                 .accessibilityIdentifier("onboardingSteps")
             }

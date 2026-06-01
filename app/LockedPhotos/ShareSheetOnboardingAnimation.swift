@@ -3,9 +3,8 @@ import UIKit
 
 struct ShareSheetOnboardingAnimation: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var phase = 0
+    @State private var phase: StoryPhase = .photos
 
-    private let phaseCount = 6
     private let demoImages = DemoPhotoFactory.makePhotos().map(\.image)
 
     var body: some View {
@@ -14,20 +13,20 @@ struct ShareSheetOnboardingAnimation: View {
                 .fill(Color(uiColor: .secondarySystemBackground))
 
             ZStack(alignment: .bottom) {
-                if phase == 5 {
+                if phase == .lockedViewer {
                     lockedViewer
                         .transition(.opacity)
                 } else {
                     photosScreen
                         .transition(.opacity)
 
-                    if phase == 1 || phase == 4 {
-                        shareSheet(readyToLaunch: phase == 4)
+                    if phase == .shareMore || phase == .launchDontSwipe {
+                        shareSheet(readyToLaunch: phase == .launchDontSwipe)
                             .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
 
-                    if phase == 2 || phase == 3 {
-                        editAppsSheet(isAdded: phase == 3)
+                    if phase == .appsMore || phase == .editPlus || phase == .favoriteDone {
+                        appsSheet
                             .transition(.move(edge: .trailing).combined(with: .opacity))
                     }
                 }
@@ -35,21 +34,21 @@ struct ShareSheetOnboardingAnimation: View {
             .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
             .padding(8)
         }
-        .frame(height: 300)
+        .frame(height: 340)
         .clipped()
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Animated setup preview showing Photos, Share, More, add Don't Swipe, and open the locked viewer")
+        .accessibilityLabel("Animated setup preview showing Photos, Share, More, Edit, add Don't Swipe to Favorites, Done, and open the locked viewer")
         .accessibilityIdentifier("shareSetupAnimation")
         .task {
             guard !reduceMotion else {
-                phase = 4
+                phase = .favoriteDone
                 return
             }
 
             while !Task.isCancelled {
-                try? await Task.sleep(nanoseconds: 1_250_000_000)
-                withAnimation(.snappy(duration: 0.45)) {
-                    phase = (phase + 1) % phaseCount
+                try? await Task.sleep(nanoseconds: phase.holdNanoseconds)
+                withAnimation(.smooth(duration: 0.55)) {
+                    phase = phase.next
                 }
             }
         }
@@ -82,9 +81,9 @@ struct ShareSheetOnboardingAnimation: View {
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(.blue)
                     .frame(width: 46, height: 46)
-                    .background(.blue.opacity(phase == 0 ? 0.16 : 0), in: Circle())
+                    .background(.blue.opacity(phase == .photos ? 0.16 : 0), in: Circle())
                     .overlay {
-                        if phase == 0 {
+                        if phase == .photos {
                             tapPulse
                         }
                     }
@@ -165,7 +164,6 @@ struct ShareSheetOnboardingAnimation: View {
 
             HStack(spacing: 10) {
                 shareAppIcon("message.fill", title: "Messages", color: .green)
-                shareAppIcon("envelope.fill", title: "Mail", color: .blue)
 
                 if readyToLaunch {
                     dontSwipeIcon(isHighlighted: true)
@@ -174,6 +172,7 @@ struct ShareSheetOnboardingAnimation: View {
                 }
 
                 shareAppIcon("eye.fill", title: "Preview", color: .indigo)
+                shareAppIcon("envelope.fill", title: "Mail", color: .blue)
             }
         }
         .padding(14)
@@ -181,57 +180,160 @@ struct ShareSheetOnboardingAnimation: View {
         .padding(10)
     }
 
-    private func editAppsSheet(isAdded: Bool) -> some View {
-        VStack(spacing: 10) {
+    private var appsSheet: some View {
+        VStack(spacing: 11) {
             HStack {
-                ButtonLabel("Cancel", color: .secondary)
+                ButtonLabel(phase == .appsMore ? "Done" : "", color: .clear)
                 Spacer()
                 Text("Apps")
                     .font(.headline)
                 Spacer()
-                ButtonLabel("Done", color: .blue)
+                ButtonLabel(phase == .appsMore ? "Edit" : "Done", color: .blue)
                     .background {
-                        if isAdded {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        if phase == .appsMore || phase == .favoriteDone {
+                            Capsule()
                                 .fill(.blue.opacity(0.14))
                         }
                     }
-            }
-
-            Divider()
-
-            HStack(spacing: 12) {
-                Image(systemName: "lock.rectangle.stack.fill")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                    .frame(width: 42, height: 42)
-                    .background(.black, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Don't Swipe")
-                        .font(.body.weight(.semibold))
-                    Text(isAdded ? "Favorite" : "Add to Favorites")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                Image(systemName: isAdded ? "checkmark.circle.fill" : "plus.circle.fill")
-                    .font(.title2.weight(.semibold))
-                    .foregroundStyle(isAdded ? .green : .blue)
                     .overlay {
-                        if !isAdded {
+                        if phase == .appsMore || phase == .favoriteDone {
                             tapPulse
+                                .scaleEffect(0.76)
                         }
                     }
             }
-            .padding(12)
-            .background(Color(uiColor: .tertiarySystemBackground), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+
+            VStack(alignment: .leading, spacing: 7) {
+                sheetSectionTitle("Favorites")
+                VStack(spacing: 0) {
+                    appListRow(icon: "airplayaudio", title: "AirDrop", accent: .blue)
+                    Divider()
+                        .padding(.leading, 54)
+                    if phase == .favoriteDone {
+                        appListRow(
+                            icon: "lock.rectangle.stack.fill",
+                            title: "Don't Swipe",
+                            accent: .black,
+                            leading: "minus.circle.fill",
+                            trailing: "line.3.horizontal"
+                        )
+                    } else {
+                        appListRow(icon: "message.fill", title: "Messages", accent: .green)
+                    }
+                }
+                .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+            }
+
+            if phase != .favoriteDone {
+                VStack(alignment: .leading, spacing: 7) {
+                    sheetSectionTitle("Suggestions")
+                    VStack(spacing: 0) {
+                        appListRow(icon: "checklist", title: "Reminders", accent: .white, neutralIcon: true, leading: phase == .editPlus ? "plus.circle.fill" : nil)
+                        Divider()
+                            .padding(.leading, 54)
+                        appListRow(
+                            icon: "lock.rectangle.stack.fill",
+                            title: "Don't Swipe",
+                            accent: .black,
+                            leading: phase == .editPlus ? "plus.circle.fill" : nil,
+                            highlightLeading: phase == .editPlus
+                        )
+                    }
+                    .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                }
+            }
         }
         .padding(14)
-        .background(Color(uiColor: .systemBackground), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .background(Color(uiColor: .systemGroupedBackground), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
         .padding(10)
+    }
+
+    private func sheetSectionTitle(_ title: String) -> some View {
+        Text(title)
+            .font(.caption.weight(.bold))
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 8)
+    }
+
+    private func appListRow(
+        icon: String,
+        title: String,
+        accent: Color,
+        neutralIcon: Bool = false,
+        leading: String? = nil,
+        trailing: String? = nil,
+        highlightLeading: Bool = false
+    ) -> some View {
+        HStack(spacing: 12) {
+            if let leading {
+                Image(systemName: leading)
+                    .font(.title3.weight(.semibold))
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(leading.contains("plus") ? .white : .white, leading.contains("plus") ? .green : .red)
+                    .frame(width: 24, height: 24)
+                    .overlay {
+                        if highlightLeading {
+                            tapPulse
+                                .scaleEffect(0.62)
+                        }
+                    }
+            }
+
+            Image(systemName: icon)
+                .font(.headline.weight(.semibold))
+                .foregroundStyle(neutralIcon ? .gray : .white)
+                .frame(width: 38, height: 38)
+                .background(accent, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
+
+            Text(title)
+                .font(.body.weight(.semibold))
+
+            Spacer()
+
+            if let trailing {
+                Image(systemName: trailing)
+                    .font(.body.weight(.semibold))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(height: 54)
+        .padding(.horizontal, 10)
+    }
+
+    private enum StoryPhase: Int, CaseIterable {
+        case photos
+        case shareMore
+        case appsMore
+        case editPlus
+        case favoriteDone
+        case launchDontSwipe
+        case lockedViewer
+
+        var next: StoryPhase {
+            let phases = Self.allCases
+            let nextIndex = (rawValue + 1) % phases.count
+            return phases[nextIndex]
+        }
+
+        // These holds are intentionally slower than the transitions so first-run setup can be followed without pausing.
+        var holdNanoseconds: UInt64 {
+            switch self {
+            case .photos:
+                return 2_000_000_000
+            case .shareMore:
+                return 2_600_000_000
+            case .appsMore:
+                return 2_400_000_000
+            case .editPlus:
+                return 3_000_000_000
+            case .favoriteDone:
+                return 2_700_000_000
+            case .launchDontSwipe:
+                return 2_400_000_000
+            case .lockedViewer:
+                return 2_200_000_000
+            }
+        }
     }
 
     private var lockedViewer: some View {

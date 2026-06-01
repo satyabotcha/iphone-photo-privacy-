@@ -48,3 +48,7 @@
 ### [2026-06-01] Onboarding visuals need real app imagery
 **Context:** Building the first-run Don't Swipe setup animation.
 **Learning:** Placeholder color tiles make the Photos walkthrough feel fake. Bundle a small reusable demo photo set and use those same images in onboarding, UI-test demo mode, and the locked viewer.
+
+### [2026-06-01] Simulator test launch prep can flake
+**Context:** Running UI tests after changing the Don't Swipe onboarding storyboard.
+**Learning:** `xcodebuild test` can fail before assertions with `Invalid connectionUUID specified` while preparing the simulator. Boot the explicit simulator with `xcrun simctl bootstatus <device-id> -b` and rerun before treating it as a product failure.

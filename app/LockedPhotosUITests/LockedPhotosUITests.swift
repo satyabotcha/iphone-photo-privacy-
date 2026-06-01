@@ -10,10 +10,12 @@ final class LockedPhotosUITests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.otherElements["shareSetupAnimation"].waitForExistence(timeout: 3))
-        XCTAssertTrue(app.staticTexts["Open Photos"].exists)
-        XCTAssertTrue(app.staticTexts["Tap Share, then More"].exists)
-        XCTAssertTrue(app.staticTexts["Add Don't Swipe to Favorites"].exists)
-        XCTAssertTrue(app.staticTexts["Tap Don't Swipe to lock it"].exists)
+        XCTAssertTrue(app.staticTexts["In Photos, select photos and tap Share"].exists)
+        XCTAssertTrue(app.staticTexts["Tap More in the app row"].exists)
+        XCTAssertTrue(app.staticTexts["Tap Edit"].exists)
+        XCTAssertTrue(app.staticTexts["Tap + next to Don't Swipe"].exists)
+        XCTAssertTrue(app.staticTexts["Confirm Don't Swipe is in Favorites"].exists)
+        XCTAssertTrue(app.staticTexts["Tap Done, then Don't Swipe"].exists)
 
         XCTAssertFalse(app.staticTexts["Don't Swipe"].exists)
         XCTAssertFalse(app.buttons["demoToolbarButton"].exists)
