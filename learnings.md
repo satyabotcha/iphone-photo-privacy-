@@ -40,3 +40,7 @@
 ### [2026-06-01] Simulator biometric command availability
 **Context:** Verifying Face ID-gated exit from the Don't Swipe viewer on the iPhone 17 simulator.
 **Learning:** This local Xcode `simctl` does not expose the older `biometric` subcommand, so automated Face ID match/fail simulation from shell is unavailable. Use UI tests for fail-closed behavior and verify successful authentication on a physical device or through Simulator UI features when available.
+
+### [2026-06-01] Removed controls need real absence tests
+**Context:** Removing the inert options control from the Don't Swipe viewer.
+**Learning:** Do not replace removed SwiftUI controls with hidden accessibility shims just to keep UI tests stable. Assert the removed element no longer exists, and use visible surviving chrome for behavior coverage.

@@ -79,21 +79,13 @@ struct HandoffViewer: View {
                 photoInfo(info)
                     .frame(maxWidth: 280)
                     .layoutPriority(1)
-
-                Spacer()
             }
 
-            Button {} label: {
-                Label("Options", systemImage: "ellipsis")
-                    .labelStyle(.iconOnly)
-                    .font(.title3.weight(.semibold))
-                    .frame(width: 52, height: 52)
-                    .background(.regularMaterial, in: Circle())
-            }
-            .buttonStyle(.plain)
-            .foregroundStyle(.primary)
-            .accessibilityLabel("Photo \(currentIndex + 1) of \(photos.count)")
-            .accessibilityIdentifier("handoffCounter")
+            Spacer()
+
+            Color.clear
+                .frame(width: 52, height: 52)
+                .accessibilityHidden(true)
         }
         .padding(.horizontal, 16)
         .padding(.top, 8)
