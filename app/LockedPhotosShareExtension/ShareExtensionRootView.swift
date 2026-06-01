@@ -30,7 +30,7 @@ struct ShareExtensionRootView: View {
                 ProgressView()
                 Text("Preparing photos")
                     .font(.headline)
-                Text("Only the photos shared from Photos are loaded here.")
+                Text("Only the photos shared from Photos are visible in Don't Swipe.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)

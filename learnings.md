@@ -26,17 +26,17 @@
 **Learning:** `xcodebuild` saw the paired iPhone 16 but timed out because the developer disk image could not be mounted. Resolve the device/Xcode pairing state before relying on CLI device builds; simulator builds and tests still work.
 
 ### [2026-05-26] SwiftUI overlay accessibility
-**Context:** Verifying Photos-like metadata chrome in the handoff viewer with UI tests.
+**Context:** Verifying Photos-like metadata chrome in the Don't Swipe viewer with UI tests.
 **Learning:** A combined accessibility identifier on a container did not surface reliably for SwiftUI overlay text. Put identifiers on the visible `Text` elements and assert their disappearance when the chrome is hidden.
 
-### [2026-06-01] Photos-like handoff chrome
-**Context:** Making the handoff viewer feel closer to the native Photos app.
-**Learning:** Keep the viewer chrome state light and system-backed, then switch the canvas to black only when chrome is hidden. Action extensions can request full-screen presentation in the plist; Share extension hosts may still constrain the outer sheet, so the Action extension remains the cleanest Photos-like handoff path.
+### [2026-06-01] Photos-like Don't Swipe chrome
+**Context:** Making the Don't Swipe viewer feel closer to the native Photos app.
+**Learning:** Keep the viewer chrome state light and system-backed, then switch the canvas to black only when chrome is hidden. Action extensions can request full-screen presentation in the plist; Share extension hosts may still constrain the outer sheet, so the Action extension remains the cleanest Photos-like Don't Swipe path.
 
 ### [2026-06-01] EXIF wall-clock display
-**Context:** Matching the native Photos timestamp in the handoff viewer.
+**Context:** Matching the native Photos timestamp in the Don't Swipe viewer.
 **Learning:** `DateTimeOriginal` EXIF values are camera wall-clock timestamps, not timezone-shiftable instants. Parse and display them in a fixed display timezone so a photo captured at 9:55 pm does not render as 10:55 pm on a device currently using daylight-saving time.
 
 ### [2026-06-01] Simulator biometric command availability
-**Context:** Verifying Face ID-gated exit from the handoff viewer on the iPhone 17 simulator.
+**Context:** Verifying Face ID-gated exit from the Don't Swipe viewer on the iPhone 17 simulator.
 **Learning:** This local Xcode `simctl` does not expose the older `biometric` subcommand, so automated Face ID match/fail simulation from shell is unavailable. Use UI tests for fail-closed behavior and verify successful authentication on a physical device or through Simulator UI features when available.

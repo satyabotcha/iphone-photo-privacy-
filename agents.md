@@ -21,7 +21,7 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
 - `app/LockedPhotos`: containing iOS app and shared viewer UI
 - `app/LockedPhotosShareExtension`: share/action extension host code and selected-photo loader
 - `app/LockedPhotosActionExtension`: Action Extension plist; reuses the share extension host code
-- `app/LockedPhotosUITests`: UI tests for demo handoff flow
+- `app/LockedPhotosUITests`: UI tests for the demo Don't Swipe flow
 - `app/project.yml`: source of truth for the Xcode project; run `xcodegen generate` after target changes
 
 ---
@@ -32,7 +32,7 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
   - Share Extension: `com.apple.share-services`, appears in the app/share destination area.
   - Action Extension: `com.apple.ui-services`, appears in the action list and requests full-screen presentation.
 - Both extensions currently display as "Don't Swipe" and reuse the same loader/viewer code.
-- Locked mode should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip. Tap the photo to hide all chrome/status bar for native full-screen viewing; tap again to bring controls back.
+- The Don't Swipe viewer should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip. Tap the photo to hide all chrome/status bar for native full-screen viewing; tap again to bring controls back.
 - Selected photos preserve basic embedded metadata when available: capture date and GPS coordinates are shown with the visible chrome and disappear when chrome is hidden.
 
 ## Instructions

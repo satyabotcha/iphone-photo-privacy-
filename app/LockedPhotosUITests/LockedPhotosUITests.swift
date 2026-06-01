@@ -5,7 +5,7 @@ final class LockedPhotosUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testDemoHandoffViewerStaysWithinSelectedPhotosAndZooms() throws {
+    func testDemoDontSwipeViewerStaysWithinSelectedPhotosAndZooms() throws {
         let app = XCUIApplication()
         app.launch()
 
@@ -21,7 +21,7 @@ final class LockedPhotosUITests: XCTestCase {
         XCTAssertTrue(counter.waitForExistence(timeout: 3))
         XCTAssertEqual(counter.label, "Photo 1 of 3")
         XCTAssertTrue(app.buttons["endHandoffButton"].waitForExistence(timeout: 3))
-        XCTAssertEqual(app.buttons["endHandoffButton"].label, "Unlock to end handoff")
+        XCTAssertEqual(app.buttons["endHandoffButton"].label, "Unlock to exit Don't Swipe")
         XCTAssertTrue(app.staticTexts["photoInfoDateLabel"].waitForExistence(timeout: 3))
         XCTAssertFalse(app.staticTexts["photoInfoDateLabel"].label.contains(" at "))
         XCTAssertTrue(app.staticTexts["photoInfoTimeLabel"].waitForExistence(timeout: 3))

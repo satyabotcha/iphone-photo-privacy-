@@ -20,7 +20,7 @@ struct ContentView: View {
                     selectedGrid
                 }
             }
-            .navigationTitle("Handoff Set")
+            .navigationTitle("Don't Swipe")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Demo") {
@@ -59,7 +59,7 @@ struct ContentView: View {
         ContentUnavailableView {
             Label("Choose Photos", systemImage: "lock.rectangle.stack")
         } description: {
-            Text("Only the selected photos are passed into handoff mode.")
+            Text("Only the photos you choose are visible in Don't Swipe.")
         } actions: {
             VStack(spacing: 12) {
                 PhotosPicker(
@@ -109,7 +109,7 @@ struct ContentView: View {
             Button {
                 isViewerPresented = true
             } label: {
-                Label("Start Handoff", systemImage: "lock.fill")
+                Label("Open Don't Swipe", systemImage: "lock.fill")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)

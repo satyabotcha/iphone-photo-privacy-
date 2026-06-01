@@ -26,7 +26,7 @@ struct HandoffViewer: View {
                     ZoomableImage(image: photo.image, backgroundColor: canvasColor)
                         .ignoresSafeArea()
                         .tag(index)
-                        .accessibilityLabel("Handoff photo \(index + 1) of \(photos.count)")
+                        .accessibilityLabel("Don't Swipe photo \(index + 1) of \(photos.count)")
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
@@ -70,7 +70,7 @@ struct HandoffViewer: View {
             .buttonStyle(.plain)
             .foregroundStyle(.primary)
             .disabled(isAuthenticatingToEnd)
-            .accessibilityLabel("Unlock to end handoff")
+            .accessibilityLabel("Unlock to exit Don't Swipe")
             .accessibilityIdentifier("endHandoffButton")
 
             Spacer()
@@ -194,7 +194,7 @@ private enum HandoffExitAuthenticator {
         return await withCheckedContinuation { continuation in
             context.evaluatePolicy(
                 .deviceOwnerAuthentication,
-                localizedReason: "Unlock to leave Don't Swipe and return to Photos."
+                localizedReason: "Unlock to exit Don't Swipe and return to Photos."
             ) { success, _ in
                 continuation.resume(returning: success)
             }

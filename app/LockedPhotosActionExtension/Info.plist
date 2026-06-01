@@ -19,7 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Unlock to end the handoff and return to your photos.</string>
+	<string>Unlock to exit Don&apos;t Swipe and return to your photos.</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionActionWantsFullScreenPresentation</key>
