@@ -3,17 +3,32 @@ import UIKit
 enum DemoPhotoFactory {
     static func makePhotos() -> [SelectedPhoto] {
         [
-            makePhoto(title: "One", colors: [UIColor.systemIndigo, UIColor.systemTeal], dayOffset: 0),
-            makePhoto(title: "Two", colors: [UIColor.systemPink, UIColor.systemOrange], dayOffset: -1),
-            makePhoto(title: "Three", colors: [UIColor.systemGreen, UIColor.systemBlue], dayOffset: -2)
+            makePhoto(assetName: "DemoPhoto1", dayOffset: 0),
+            makePhoto(assetName: "DemoPhoto2", dayOffset: -1),
+            makePhoto(assetName: "DemoPhoto3", dayOffset: -2)
         ]
     }
 
-    private static func makePhoto(title: String, colors: [UIColor], dayOffset: Int) -> SelectedPhoto {
+    private static func makePhoto(assetName: String, dayOffset: Int) -> SelectedPhoto {
+        SelectedPhoto(
+            image: UIImage(named: assetName) ?? makeFallbackImage(),
+            info: PhotoInfo(
+                capturedAt: Calendar.current.date(byAdding: .day, value: dayOffset, to: .now),
+                latitude: 51.5072,
+                longitude: -0.1276
+            )
+        )
+    }
+
+    private static func makeFallbackImage() -> UIImage {
+        makeGradientImage(title: "Photo", colors: [UIColor.systemIndigo, UIColor.systemTeal])
+    }
+
+    private static func makeGradientImage(title: String, colors: [UIColor]) -> UIImage {
         let size = CGSize(width: 1200, height: 1600)
         let renderer = UIGraphicsImageRenderer(size: size)
 
-        let image = renderer.image { context in
+        return renderer.image { context in
             let cgColors = colors.map(\.cgColor) as CFArray
             let colorSpace = CGColorSpaceCreateDeviceRGB()
             let gradient = CGGradient(
@@ -49,14 +64,5 @@ enum DemoPhotoFactory {
                 withAttributes: attributes
             )
         }
-
-        return SelectedPhoto(
-            image: image,
-            info: PhotoInfo(
-                capturedAt: Calendar.current.date(byAdding: .day, value: dayOffset, to: .now),
-                latitude: 51.5072,
-                longitude: -0.1276
-            )
-        )
     }
 }

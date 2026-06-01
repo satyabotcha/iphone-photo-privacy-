@@ -1,86 +1,57 @@
-import PhotosUI
 import SwiftUI
 
 struct ContentView: View {
-    @State private var pickerItems: [PhotosPickerItem] = []
     @State private var selectedPhotos: [SelectedPhoto] = []
-    @State private var isLoadingSelection = false
     @State private var isViewerPresented = false
 
     private let gridColumns = [
         GridItem(.adaptive(minimum: 96), spacing: 10)
     ]
 
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                if selectedPhotos.isEmpty {
-                    emptyState
-                } else {
-                    selectedGrid
-                }
-            }
-            .navigationTitle("Don't Swipe")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Demo") {
-                        selectedPhotos = DemoPhotoFactory.makePhotos()
-                    }
-                    .accessibilityIdentifier("demoToolbarButton")
-                }
+    init() {
+        let photos = ProcessInfo.processInfo.arguments.contains("-uiTestingDemoSet")
+            ? DemoPhotoFactory.makePhotos()
+            : []
+        _selectedPhotos = State(initialValue: photos)
+    }
 
-                ToolbarItem(placement: .topBarTrailing) {
-                    PhotosPicker(
-                        selection: $pickerItems,
-                        maxSelectionCount: 20,
-                        matching: .images,
-                        photoLibrary: .shared()
-                    ) {
-                        Label("Select", systemImage: "photo.badge.plus")
-                    }
-                    .disabled(isLoadingSelection)
-                }
+    var body: some View {
+        VStack(spacing: 0) {
+            if selectedPhotos.isEmpty {
+                emptyState
+            } else {
+                selectedGrid
             }
-            .safeAreaInset(edge: .bottom) {
+        }
+        .safeAreaInset(edge: .bottom) {
+            if !selectedPhotos.isEmpty {
                 bottomBar
             }
-            .task(id: pickerItems) {
-                await loadSelectedPhotos()
-            }
-            .fullScreenCover(isPresented: $isViewerPresented) {
-                HandoffViewer(photos: selectedPhotos) {
-                    isViewerPresented = false
-                }
+        }
+        .fullScreenCover(isPresented: $isViewerPresented) {
+            HandoffViewer(photos: selectedPhotos) {
+                isViewerPresented = false
             }
         }
     }
 
     private var emptyState: some View {
-        ContentUnavailableView {
-            Label("Choose Photos", systemImage: "lock.rectangle.stack")
-        } description: {
-            Text("Only the photos you choose are visible in Don't Swipe.")
-        } actions: {
-            VStack(spacing: 12) {
-                PhotosPicker(
-                    selection: $pickerItems,
-                    maxSelectionCount: 20,
-                    matching: .images,
-                    photoLibrary: .shared()
-                ) {
-                    Label("Select Photos", systemImage: "photo.on.rectangle.angled")
-                }
-                .buttonStyle(.borderedProminent)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                ShareSheetOnboardingAnimation()
+                    .padding(.top, 4)
 
-                Button {
-                    selectedPhotos = DemoPhotoFactory.makePhotos()
-                } label: {
-                    Label("Use Demo Set", systemImage: "sparkles")
+                VStack(alignment: .leading, spacing: 9) {
+                    setupStep(number: 1, title: "Open Photos")
+                    setupStep(number: 2, title: "Tap Share, then More")
+                    setupStep(number: 3, title: "Add Don't Swipe to Favorites")
+                    setupStep(number: 4, title: "Tap Don't Swipe to lock it")
                 }
-                .buttonStyle(.bordered)
-                .accessibilityIdentifier("useDemoSetButton")
+                .accessibilityIdentifier("onboardingSteps")
             }
+                .padding(18)
         }
+        .background(Color(uiColor: .systemGroupedBackground))
     }
 
     private var selectedGrid: some View {
@@ -102,10 +73,6 @@ struct ContentView: View {
 
     private var bottomBar: some View {
         VStack(spacing: 10) {
-            if isLoadingSelection {
-                ProgressView("Preparing selected photos")
-            }
-
             Button {
                 isViewerPresented = true
             } label: {
@@ -115,7 +82,7 @@ struct ContentView: View {
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
             .accessibilityIdentifier("startHandoffButton")
-            .disabled(selectedPhotos.isEmpty || isLoadingSelection)
+            .disabled(selectedPhotos.isEmpty)
 
             Text("\(selectedPhotos.count) selected")
                 .font(.footnote)
@@ -126,24 +93,18 @@ struct ContentView: View {
         .background(.bar)
     }
 
-    private func loadSelectedPhotos() async {
-        guard !pickerItems.isEmpty else { return }
+    private func setupStep(number: Int, title: String) -> some View {
+        HStack(spacing: 12) {
+            Text("\(number)")
+                .font(.caption.weight(.bold))
+                .foregroundStyle(.secondary)
+                .frame(width: 26, height: 26)
+                .background(.quaternary, in: Circle())
 
-        isLoadingSelection = true
-        defer { isLoadingSelection = false }
-
-        var loadedPhotos: [SelectedPhoto] = []
-
-        for item in pickerItems {
-            guard let data = try? await item.loadTransferable(type: Data.self),
-                  let image = UIImage(data: data) else {
-                continue
-            }
-
-            loadedPhotos.append(SelectedPhoto(image: image, info: PhotoInfo.make(fromImageData: data)))
+            Text(title)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(.primary)
         }
-
-        selectedPhotos = loadedPhotos
     }
 }
 

@@ -44,3 +44,7 @@
 ### [2026-06-01] Removed controls need real absence tests
 **Context:** Removing the inert options control from the Don't Swipe viewer.
 **Learning:** Do not replace removed SwiftUI controls with hidden accessibility shims just to keep UI tests stable. Assert the removed element no longer exists, and use visible surviving chrome for behavior coverage.
+
+### [2026-06-01] Onboarding visuals need real app imagery
+**Context:** Building the first-run Don't Swipe setup animation.
+**Learning:** Placeholder color tiles make the Photos walkthrough feel fake. Bundle a small reusable demo photo set and use those same images in onboarding, UI-test demo mode, and the locked viewer.

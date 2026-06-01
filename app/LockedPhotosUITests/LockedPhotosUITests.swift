@@ -5,17 +5,33 @@ final class LockedPhotosUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    func testDemoDontSwipeViewerStaysWithinSelectedPhotosAndZooms() throws {
+    func testOnboardingShowsOnlyVisualInstructionsAndSteps() throws {
         let app = XCUIApplication()
         app.launch()
 
-        app.buttons["useDemoSetButton"].tap()
+        XCTAssertTrue(app.otherElements["shareSetupAnimation"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.staticTexts["Open Photos"].exists)
+        XCTAssertTrue(app.staticTexts["Tap Share, then More"].exists)
+        XCTAssertTrue(app.staticTexts["Add Don't Swipe to Favorites"].exists)
+        XCTAssertTrue(app.staticTexts["Tap Don't Swipe to lock it"].exists)
+
+        XCTAssertFalse(app.staticTexts["Don't Swipe"].exists)
+        XCTAssertFalse(app.buttons["demoToolbarButton"].exists)
+        XCTAssertFalse(app.buttons["useDemoSetButton"].exists)
+        XCTAssertFalse(app.buttons["openPhotosButton"].exists)
+    }
+
+    func testDemoDontSwipeViewerStaysWithinSelectedPhotosAndZooms() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("-uiTestingDemoSet")
+        app.launch()
 
         let selectedCount = app.staticTexts["selectedCountLabel"]
         XCTAssertTrue(selectedCount.waitForExistence(timeout: 3))
         XCTAssertEqual(selectedCount.label, "3 selected")
 
-        app.buttons["startHandoffButton"].tap()
+        XCTAssertTrue(app.buttons["startHandoffButton"].waitForExistence(timeout: 3))
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.88)).tap()
 
         XCTAssertFalse(app.buttons["handoffCounter"].exists)
         XCTAssertTrue(app.buttons["endHandoffButton"].waitForExistence(timeout: 3))
