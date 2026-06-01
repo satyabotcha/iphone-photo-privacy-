@@ -75,7 +75,7 @@
 		201FA0891896384E0C113717 /* ZoomableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableImage.swift; sourceTree = "<group>"; };
 		219971FC054C2E62EC000388 /* HandoffViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandoffViewer.swift; sourceTree = "<group>"; };
 		2BDFCA29EA43EAB8891126EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2CC2DEF4B1F51880BD2AF16A /* LockedPhotos.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LockedPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CC2DEF4B1F51880BD2AF16A /* LockedPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockedPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionRootView.swift; sourceTree = "<group>"; };
 		39EBBED4D9C57ECE8E3DF193 /* LockedPhotosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedPhotosUITests.swift; sourceTree = "<group>"; };
 		45D46F474909140BE4724EAE /* DemoPhotoFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPhotoFactory.swift; sourceTree = "<group>"; };
@@ -83,10 +83,10 @@
 		6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPhotoLoader.swift; sourceTree = "<group>"; };
 		6C580AF17A40A5D55B036771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6DC4BB8D2530035447CE42F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LockedPhotosShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LockedPhotosActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockedPhotosShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockedPhotosActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		E4706ED7B71607F9E4BFDD0C /* LockedPhotosUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LockedPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4706ED7B71607F9E4BFDD0C /* LockedPhotosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LockedPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7B4C798731520188878444 /* SelectedPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPhoto.swift; sourceTree = "<group>"; };
 		EE3D46FA53B1D9F1B45736C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -346,6 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -361,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotosShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -433,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotosActionExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotosUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -466,6 +470,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotosActionExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -482,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotosShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -500,6 +506,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -515,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B36HAV7Z5C;
 				INFOPLIST_FILE = LockedPhotosUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
