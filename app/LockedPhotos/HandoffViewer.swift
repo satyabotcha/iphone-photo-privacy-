@@ -78,12 +78,15 @@ struct HandoffViewer: View {
                 Spacer()
             }
 
-            Text("\(currentIndex + 1) / \(photos.count)")
-                .font(.callout.weight(.semibold))
-                .foregroundStyle(.primary)
-                .frame(minWidth: 52, minHeight: 52)
-                .padding(.horizontal, 4)
-                .background(.regularMaterial, in: Capsule())
+            Button {} label: {
+                Label("Options", systemImage: "ellipsis")
+                    .labelStyle(.iconOnly)
+                    .font(.title3.weight(.semibold))
+                    .frame(width: 52, height: 52)
+                    .background(.regularMaterial, in: Circle())
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.primary)
                 .accessibilityLabel("Photo \(currentIndex + 1) of \(photos.count)")
                 .accessibilityIdentifier("handoffCounter")
         }
@@ -93,17 +96,17 @@ struct HandoffViewer: View {
 
     private func photoInfo(_ info: PhotoInfo) -> some View {
         VStack(spacing: 2) {
-            if let dateText = info.dateText {
+            if let dateText = info.dateTitleText {
                 Text(dateText)
                     .font(.callout.weight(.semibold))
                     .accessibilityIdentifier("photoInfoDateLabel")
             }
 
-            if let locationText = info.locationText {
-                Text(locationText)
+            if let timeText = info.timeText {
+                Text(timeText)
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                    .accessibilityIdentifier("photoInfoLocationLabel")
+                    .accessibilityIdentifier("photoInfoTimeLabel")
             }
         }
         .foregroundStyle(.primary)
@@ -116,42 +119,46 @@ struct HandoffViewer: View {
 
     private var thumbnailStrip: some View {
         ScrollViewReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 6) {
-                    ForEach(Array(photos.enumerated()), id: \.element.id) { index, photo in
-                        Button {
-                            withAnimation(.easeInOut(duration: 0.18)) {
-                                currentIndex = index
-                            }
-                        } label: {
-                            Image(uiImage: photo.image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 34, height: 48)
-                                .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                                        .stroke(index == currentIndex ? .white : .clear, lineWidth: 2)
-                                        .shadow(color: .black.opacity(index == currentIndex ? 0.35 : 0), radius: 2, y: 1)
+            GeometryReader { geometry in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 6) {
+                        ForEach(Array(photos.enumerated()), id: \.element.id) { index, photo in
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.18)) {
+                                    currentIndex = index
                                 }
+                            } label: {
+                                Image(uiImage: photo.image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 34, height: 48)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 4, style: .continuous)
+                                            .stroke(index == currentIndex ? .white : .clear, lineWidth: 2)
+                                            .shadow(color: .black.opacity(index == currentIndex ? 0.35 : 0), radius: 2, y: 1)
+                                    }
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Show photo \(index + 1)")
+                            .accessibilityIdentifier("handoffThumbnail_\(index + 1)")
+                            .id(index)
                         }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("Show photo \(index + 1)")
-                        .accessibilityIdentifier("handoffThumbnail_\(index + 1)")
-                        .id(index)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .frame(minWidth: geometry.size.width, alignment: .center)
+                }
+                .frame(height: 70)
+                .padding(.bottom, 16)
+                .accessibilityIdentifier("handoffThumbnailStrip")
+                .onChange(of: currentIndex) { _, newIndex in
+                    withAnimation(.easeInOut(duration: 0.18)) {
+                        proxy.scrollTo(newIndex, anchor: .center)
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
             }
-            .frame(height: 70)
-            .padding(.bottom, 16)
-            .accessibilityIdentifier("handoffThumbnailStrip")
-            .onChange(of: currentIndex) { _, newIndex in
-                withAnimation(.easeInOut(duration: 0.18)) {
-                    proxy.scrollTo(newIndex, anchor: .center)
-                }
-            }
+            .frame(height: 86)
         }
     }
 }

@@ -32,3 +32,7 @@
 ### [2026-06-01] Photos-like handoff chrome
 **Context:** Making the handoff viewer feel closer to the native Photos app.
 **Learning:** Keep the viewer chrome state light and system-backed, then switch the canvas to black only when chrome is hidden. Action extensions can request full-screen presentation in the plist; Share extension hosts may still constrain the outer sheet, so the Action extension remains the cleanest Photos-like handoff path.
+
+### [2026-06-01] EXIF wall-clock display
+**Context:** Matching the native Photos timestamp in the handoff viewer.
+**Learning:** `DateTimeOriginal` EXIF values are camera wall-clock timestamps, not timezone-shiftable instants. Parse and display them in a fixed display timezone so a photo captured at 9:55 pm does not render as 10:55 pm on a device currently using daylight-saving time.

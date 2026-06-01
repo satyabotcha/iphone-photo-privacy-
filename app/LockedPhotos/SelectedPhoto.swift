@@ -13,16 +13,43 @@ struct SelectedPhoto: Identifiable {
 }
 
 struct PhotoInfo {
+    private static let exifWallClockTimeZone = TimeZone(secondsFromGMT: 0)!
+
     let capturedAt: Date?
     let latitude: Double?
     let longitude: Double?
+    let capturedAtDisplayTimeZone: TimeZone?
+
+    init(
+        capturedAt: Date?,
+        latitude: Double?,
+        longitude: Double?,
+        capturedAtDisplayTimeZone: TimeZone? = nil
+    ) {
+        self.capturedAt = capturedAt
+        self.latitude = latitude
+        self.longitude = longitude
+        self.capturedAtDisplayTimeZone = capturedAtDisplayTimeZone
+    }
 
     var hasContent: Bool {
         capturedAt != nil || (latitude != nil && longitude != nil)
     }
 
-    var dateText: String? {
-        capturedAt?.formatted(date: .abbreviated, time: .shortened)
+    var dateTitleText: String? {
+        guard let capturedAt else { return nil }
+
+        return makeFormatter(format: "d MMMM yyyy").string(from: capturedAt)
+    }
+
+    var timeText: String? {
+        guard let capturedAt else { return nil }
+
+        let formatter = makeFormatter(format: "h:mm a")
+        formatter.amSymbol = "am"
+        formatter.pmSymbol = "pm"
+
+        return formatter.string(from: capturedAt)
     }
 
     var locationText: String? {
@@ -42,7 +69,8 @@ struct PhotoInfo {
         let info = PhotoInfo(
             capturedAt: capturedAt,
             latitude: coordinate?.latitude,
-            longitude: coordinate?.longitude
+            longitude: coordinate?.longitude,
+            capturedAtDisplayTimeZone: capturedAt == nil ? nil : exifWallClockTimeZone
         )
 
         return info.hasContent ? info : nil
@@ -60,9 +88,20 @@ struct PhotoInfo {
 
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
+        // EXIF DateTimeOriginal is a camera wall-clock value; do not shift it through the current timezone.
+        formatter.timeZone = exifWallClockTimeZone
         formatter.dateFormat = "yyyy:MM:dd HH:mm:ss"
 
         return formatter.date(from: rawDate)
+    }
+
+    private func makeFormatter(format: String) -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_GB")
+        formatter.timeZone = capturedAtDisplayTimeZone ?? .autoupdatingCurrent
+        formatter.dateFormat = format
+
+        return formatter
     }
 
     private static func makeCoordinate(from properties: [CFString: Any]) -> (latitude: Double, longitude: Double)? {
