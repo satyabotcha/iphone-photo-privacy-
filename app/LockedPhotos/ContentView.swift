@@ -4,6 +4,7 @@ struct ContentView: View {
     @Environment(\.openURL) private var openURL
     @State private var selectedPhotos: [SelectedPhoto] = []
     @State private var isViewerPresented = false
+    @State private var isSetupGuidePresented = false
     @State private var hasCompletedShareSetup: Bool
 
     private let onboardingTitle = "Set Up Don't Swipe"
@@ -111,23 +112,67 @@ struct ContentView: View {
     }
 
     private var readyState: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "checkmark.shield.fill")
-                .font(.system(size: 44, weight: .semibold))
-                .foregroundStyle(.green)
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
 
-            Text("Ready in Photos")
-                .font(.title2.weight(.bold))
+                Button {
+                    isSetupGuidePresented = true
+                } label: {
+                    Label("Setup", systemImage: "questionmark.circle")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .buttonStyle(.bordered)
+                .accessibilityIdentifier("showSetupGuideButton")
+            }
+            .padding([.horizontal, .top], 20)
 
-            Text("Select photos, tap Share, then choose Don't Swipe.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
+            Spacer()
+
+            VStack(spacing: 12) {
+                Image(systemName: "checkmark.shield.fill")
+                    .font(.system(size: 44, weight: .semibold))
+                    .foregroundStyle(.green)
+
+                Text("Ready in Photos")
+                    .font(.title2.weight(.bold))
+
+                Text("Select photos, tap Share, then choose Don't Swipe.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+            .padding(24)
+            .accessibilityIdentifier("setupCompleteState")
+
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(24)
         .background(Color(uiColor: .systemGroupedBackground))
-        .accessibilityIdentifier("setupCompleteState")
+        .fullScreenCover(isPresented: $isSetupGuidePresented) {
+            setupGuide
+        }
+    }
+
+    private var setupGuide: some View {
+        ZStack(alignment: .topTrailing) {
+            emptyState
+
+            Button {
+                isSetupGuidePresented = false
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.white)
+                    .frame(width: 34, height: 34)
+                    .background(.white.opacity(0.12), in: Circle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Close setup guide")
+            .accessibilityIdentifier("closeSetupGuideButton")
+            .padding(.top, 14)
+            .padding(.trailing, 18)
+        }
     }
 
     private var selectedGrid: some View {

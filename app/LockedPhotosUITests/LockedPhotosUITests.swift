@@ -33,6 +33,15 @@ final class LockedPhotosUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Ready in Photos"].waitForExistence(timeout: 3))
         XCTAssertFalse(app.otherElements["shareSetupAnimation"].exists)
         XCTAssertFalse(app.otherElements["onboardingSteps"].exists)
+        XCTAssertTrue(app.buttons["showSetupGuideButton"].exists)
+
+        app.buttons["showSetupGuideButton"].tap()
+        XCTAssertTrue(app.otherElements["shareSetupAnimation"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["openPhotosButton"].exists)
+
+        app.buttons["closeSetupGuideButton"].tap()
+        XCTAssertTrue(app.staticTexts["Ready in Photos"].waitForExistence(timeout: 3))
+        XCTAssertFalse(app.otherElements["shareSetupAnimation"].exists)
     }
 
     func testDemoDontSwipeViewerStaysWithinSelectedPhotosAndZooms() throws {

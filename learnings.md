@@ -76,3 +76,7 @@
 ### [2026-06-03] Thumbnail selection badges need stable layout
 **Context:** Making selected ticks reliably appear in the onboarding Photos grid.
 **Learning:** Put selection badges inside an explicit thumbnail `ZStack` after the image is sized, and keep the onboarding Photos grid to the visible selected row so bottom badges cannot fall into clipped hidden rows.
+
+### [2026-06-03] Completed setup still needs a recovery path
+**Context:** Hiding onboarding after the Share/Action Extension has launched once.
+**Learning:** Do not put first-run onboarding back in the main path after setup is complete, but keep a small top-level setup guide button so users can recover the share-sheet instructions later.
