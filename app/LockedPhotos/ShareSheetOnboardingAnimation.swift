@@ -127,30 +127,21 @@ struct ShareSheetOnboardingAnimation: View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
             ForEach(0..<3) { index in
                 let isSelected = phase.selectedPhotoIndices.contains(index)
-                let isCurrentTap = phase.tappingPhotoIndex == index
 
-                photoThumbnail(index: index, isSelected: isSelected, isCurrentTap: isCurrentTap)
+                photoThumbnail(index: index, isSelected: isSelected)
             }
         }
         .padding(.horizontal, 16)
     }
 
-    private func photoThumbnail(index: Int, isSelected: Bool, isCurrentTap: Bool) -> some View {
+    private func photoThumbnail(index: Int, isSelected: Bool) -> some View {
         ZStack(alignment: .bottomTrailing) {
             Image(uiImage: demoImage(at: index))
                 .resizable()
                 .scaledToFill()
 
             if isSelected {
-                ZStack {
-                    selectedPhotoBadge
-
-                    if isCurrentTap {
-                        tapPulse
-                            .scaleEffect(0.5)
-                            .transition(.opacity)
-                    }
-                }
+                selectedPhotoBadge
                 .padding(7)
                 .transition(.scale(scale: 0.45).combined(with: .opacity))
             }
@@ -358,21 +349,6 @@ struct ShareSheetOnboardingAnimation: View {
                 return [0, 1]
             case .selectThirdPhoto, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
                 return [0, 1, 2]
-            }
-        }
-
-        var tappingPhotoIndex: Int? {
-            switch self {
-            case .photosReady:
-                return nil
-            case .selectFirstPhoto:
-                return 0
-            case .selectSecondPhoto:
-                return 1
-            case .selectThirdPhoto:
-                return 2
-            case .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
-                return nil
             }
         }
 

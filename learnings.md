@@ -80,3 +80,7 @@
 ### [2026-06-03] Completed setup still needs a recovery path
 **Context:** Hiding onboarding after the Share/Action Extension has launched once.
 **Learning:** Do not put first-run onboarding back in the main path after setup is complete, but keep a small top-level setup guide button so users can recover the share-sheet instructions later.
+
+### [2026-06-03] Selection animation should stay literal
+**Context:** Simplifying the onboarding photo-selection beat.
+**Learning:** For selected photos, the bottom-right checkmark appearing is enough. Extra tap/pulse motion makes the animation feel less native and distracts from the selected state.
