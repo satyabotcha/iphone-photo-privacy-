@@ -329,22 +329,22 @@ struct ShareSheetOnboardingAnimation: View {
         var selectedPhotoIndices: Set<Int> {
             switch self {
             case .selectFirstPhoto:
-                return [1]
+                return [0]
             case .selectSecondPhoto:
-                return [1, 2]
+                return [0, 1]
             case .selectThirdPhoto, .shareButton, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
-                return [1, 2, 4]
+                return [0, 1, 2]
             }
         }
 
         var tappingPhotoIndex: Int? {
             switch self {
             case .selectFirstPhoto:
-                return 1
+                return 0
             case .selectSecondPhoto:
-                return 2
+                return 1
             case .selectThirdPhoto:
-                return 4
+                return 2
             case .shareButton, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
                 return nil
             }
@@ -408,7 +408,7 @@ struct ShareSheetOnboardingAnimation: View {
 
             Spacer()
 
-            Image(uiImage: demoImage(at: 1))
+            Image(uiImage: demoImage(at: 0))
                 .resizable()
                 .scaledToFill()
                 .frame(height: 150)

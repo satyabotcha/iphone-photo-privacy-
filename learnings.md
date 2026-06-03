@@ -56,3 +56,7 @@
 ### [2026-06-03] Share Sheet Favorites cannot be observed directly
 **Context:** Hiding Don't Swipe onboarding after setup.
 **Learning:** iOS has no public API for reading whether an extension was added to Share Sheet Favorites. Use a shared App Group flag set when the Share/Action Extension launches, then have the container app treat that as setup complete.
+
+### [2026-06-03] Onboarding selection count must match visible checkmarks
+**Context:** Fixing the setup animation after it showed "3 Selected" while only one selected photo was visible.
+**Learning:** Keep all onboarding-selected thumbnails inside the visible clipped Photos grid; avoid selecting lower-row items unless the animation also scrolls or reveals them.
