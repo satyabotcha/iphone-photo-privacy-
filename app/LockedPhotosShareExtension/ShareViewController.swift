@@ -6,6 +6,8 @@ final class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ShareSetupState.markShareExtensionUsed()
+
         modalPresentationStyle = .fullScreen
         view.backgroundColor = .systemBackground
 

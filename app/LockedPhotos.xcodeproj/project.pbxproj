@@ -21,11 +21,14 @@
 		7ECB343E6AA9AB140AFB4A9E /* ShareSheetOnboardingAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE1720FEA945CDDB86282A /* ShareSheetOnboardingAnimation.swift */; };
 		8337C34BAF252BB1A42EF674 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE3D46FA53B1D9F1B45736C0 /* Assets.xcassets */; };
 		859C0008F8B5402C23FC9221 /* ZoomableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FA0891896384E0C113717 /* ZoomableImage.swift */; };
+		90CECFDD5A120D980D903ED8 /* ShareSetupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62D27368A16E219FDE6FD3 /* ShareSetupState.swift */; };
+		936D944B8A17F87B0807CC18 /* ShareSetupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62D27368A16E219FDE6FD3 /* ShareSetupState.swift */; };
 		9F5FD9CF1C453CDFDBBF8A16 /* SharedPhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */; };
 		A94EAC0D758B5CCED2C0DA06 /* ShareExtensionRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */; };
 		AC2965DFD4C32EA46574E121 /* ZoomableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FA0891896384E0C113717 /* ZoomableImage.swift */; };
 		ADFA4D76499662F71D9B68EC /* HandoffViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219971FC054C2E62EC000388 /* HandoffViewer.swift */; };
 		CB2F8852842207873472E545 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */; };
+		D39A02323FCB106B5381954D /* ShareSetupState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A62D27368A16E219FDE6FD3 /* ShareSetupState.swift */; };
 		D5D3B798EEF71BCC1CAD3F9D /* HandoffViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219971FC054C2E62EC000388 /* HandoffViewer.swift */; };
 		D7C4CCD2CD7D6B287A0D1431 /* SelectedPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B4C798731520188878444 /* SelectedPhoto.swift */; };
 		E140719A0D157A9ADA1B3F89 /* SharedPhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */; };
@@ -84,8 +87,11 @@
 		6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPhotoLoader.swift; sourceTree = "<group>"; };
 		6C580AF17A40A5D55B036771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6DC4BB8D2530035447CE42F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		76C10FB09C6EDDC5CA20A07F /* LockedPhotosShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockedPhotosShareExtension.entitlements; sourceTree = "<group>"; };
 		84DE1720FEA945CDDB86282A /* ShareSheetOnboardingAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetOnboardingAnimation.swift; sourceTree = "<group>"; };
+		8A62D27368A16E219FDE6FD3 /* ShareSetupState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSetupState.swift; sourceTree = "<group>"; };
 		A3E6D4324D07B7AEB0F2ADF9 /* LockedPhotosShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LockedPhotosShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3A0719EEC1519628AE86EA6 /* LockedPhotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockedPhotos.entitlements; sourceTree = "<group>"; };
 		CF8152EE987B6696D2BB78BA /* LockedPhotosActionExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LockedPhotosActionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		E4706ED7B71607F9E4BFDD0C /* LockedPhotosUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = LockedPhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,8 +118,10 @@
 				45D46F474909140BE4724EAE /* DemoPhotoFactory.swift */,
 				219971FC054C2E62EC000388 /* HandoffViewer.swift */,
 				6C580AF17A40A5D55B036771 /* Info.plist */,
+				B3A0719EEC1519628AE86EA6 /* LockedPhotos.entitlements */,
 				0B41BCF410F36B0A3E2954B9 /* LockedPhotosApp.swift */,
 				EC7B4C798731520188878444 /* SelectedPhoto.swift */,
+				8A62D27368A16E219FDE6FD3 /* ShareSetupState.swift */,
 				84DE1720FEA945CDDB86282A /* ShareSheetOnboardingAnimation.swift */,
 				201FA0891896384E0C113717 /* ZoomableImage.swift */,
 			);
@@ -144,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				6DC4BB8D2530035447CE42F1 /* Info.plist */,
+				76C10FB09C6EDDC5CA20A07F /* LockedPhotosShareExtension.entitlements */,
 				6912C9D2E7153769E128FEEE /* SharedPhotoLoader.swift */,
 				301675EAE3167C8C487C36AD /* ShareExtensionRootView.swift */,
 				DB5C9803344DB7C732F91DA0 /* ShareViewController.swift */,
@@ -292,6 +301,7 @@
 				D5D3B798EEF71BCC1CAD3F9D /* HandoffViewer.swift in Sources */,
 				3DF910E75945A4901F33E380 /* SelectedPhoto.swift in Sources */,
 				A94EAC0D758B5CCED2C0DA06 /* ShareExtensionRootView.swift in Sources */,
+				90CECFDD5A120D980D903ED8 /* ShareSetupState.swift in Sources */,
 				33D120913A2C0651BFF35CBD /* ShareViewController.swift in Sources */,
 				9F5FD9CF1C453CDFDBBF8A16 /* SharedPhotoLoader.swift in Sources */,
 				859C0008F8B5402C23FC9221 /* ZoomableImage.swift in Sources */,
@@ -307,6 +317,7 @@
 				6A4DE4CD3123FAC7F5E4CC15 /* HandoffViewer.swift in Sources */,
 				30AB99CDAB3C15B7AE08C9DA /* LockedPhotosApp.swift in Sources */,
 				083E24C76097C41138166B04 /* SelectedPhoto.swift in Sources */,
+				D39A02323FCB106B5381954D /* ShareSetupState.swift in Sources */,
 				7ECB343E6AA9AB140AFB4A9E /* ShareSheetOnboardingAnimation.swift in Sources */,
 				AC2965DFD4C32EA46574E121 /* ZoomableImage.swift in Sources */,
 			);
@@ -327,6 +338,7 @@
 				ADFA4D76499662F71D9B68EC /* HandoffViewer.swift in Sources */,
 				D7C4CCD2CD7D6B287A0D1431 /* SelectedPhoto.swift in Sources */,
 				FF77287BFBFBBBF498B1AF3B /* ShareExtensionRootView.swift in Sources */,
+				936D944B8A17F87B0807CC18 /* ShareSetupState.swift in Sources */,
 				CB2F8852842207873472E545 /* ShareViewController.swift in Sources */,
 				E140719A0D157A9ADA1B3F89 /* SharedPhotoLoader.swift in Sources */,
 				7CECA127B6EC1A22B4FCF992 /* ZoomableImage.swift in Sources */,
@@ -359,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LockedPhotos/LockedPhotos.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LockedPhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -375,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = LockedPhotosShareExtension/LockedPhotosShareExtension.entitlements;
 				INFOPLIST_FILE = LockedPhotosShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -448,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = LockedPhotosActionExtension/LockedPhotosActionExtension.entitlements;
 				INFOPLIST_FILE = LockedPhotosActionExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -481,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = LockedPhotosActionExtension/LockedPhotosActionExtension.entitlements;
 				INFOPLIST_FILE = LockedPhotosActionExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -497,6 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = LockedPhotosShareExtension/LockedPhotosShareExtension.entitlements;
 				INFOPLIST_FILE = LockedPhotosShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LockedPhotos/LockedPhotos.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = LockedPhotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

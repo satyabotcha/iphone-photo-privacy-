@@ -52,3 +52,7 @@
 ### [2026-06-01] Simulator test launch prep can flake
 **Context:** Running UI tests after changing the Don't Swipe onboarding storyboard.
 **Learning:** `xcodebuild test` can fail before assertions with `Invalid connectionUUID specified` while preparing the simulator. Boot the explicit simulator with `xcrun simctl bootstatus <device-id> -b` and rerun before treating it as a product failure.
+
+### [2026-06-03] Share Sheet Favorites cannot be observed directly
+**Context:** Hiding Don't Swipe onboarding after setup.
+**Learning:** iOS has no public API for reading whether an extension was added to Share Sheet Favorites. Use a shared App Group flag set when the Share/Action Extension launches, then have the container app treat that as setup complete.

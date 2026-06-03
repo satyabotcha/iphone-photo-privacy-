@@ -3,22 +3,38 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedPhotos: [SelectedPhoto] = []
     @State private var isViewerPresented = false
+    @State private var hasCompletedShareSetup: Bool
 
     private let gridColumns = [
         GridItem(.adaptive(minimum: 96), spacing: 10)
     ]
 
     init() {
-        let photos = ProcessInfo.processInfo.arguments.contains("-uiTestingDemoSet")
+        let arguments = ProcessInfo.processInfo.arguments
+
+        if arguments.contains("-resetShareSetupState") {
+            ShareSetupState.reset()
+        }
+
+        if arguments.contains("-markShareExtensionUsed") {
+            ShareSetupState.markShareExtensionUsed()
+        }
+
+        let photos = arguments.contains("-uiTestingDemoSet")
             ? DemoPhotoFactory.makePhotos()
             : []
         _selectedPhotos = State(initialValue: photos)
+        _hasCompletedShareSetup = State(initialValue: ShareSetupState.hasUsedShareExtension)
     }
 
     var body: some View {
         VStack(spacing: 0) {
             if selectedPhotos.isEmpty {
-                emptyState
+                if hasCompletedShareSetup {
+                    readyState
+                } else {
+                    emptyState
+                }
             } else {
                 selectedGrid
             }
@@ -32,6 +48,9 @@ struct ContentView: View {
             HandoffViewer(photos: selectedPhotos) {
                 isViewerPresented = false
             }
+        }
+        .onAppear {
+            hasCompletedShareSetup = ShareSetupState.hasUsedShareExtension
         }
     }
 
@@ -54,6 +73,26 @@ struct ContentView: View {
                 .padding(18)
         }
         .background(Color(uiColor: .systemGroupedBackground))
+    }
+
+    private var readyState: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "checkmark.shield.fill")
+                .font(.system(size: 44, weight: .semibold))
+                .foregroundStyle(.green)
+
+            Text("Ready in Photos")
+                .font(.title2.weight(.bold))
+
+            Text("Select photos, tap Share, then choose Don't Swipe.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(24)
+        .background(Color(uiColor: .systemGroupedBackground))
+        .accessibilityIdentifier("setupCompleteState")
     }
 
     private var selectedGrid: some View {

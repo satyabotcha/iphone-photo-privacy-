@@ -35,6 +35,7 @@ This is not a photo vault, locker, or privacy bunker. It is not a separate app p
 - The Don't Swipe viewer should feel close to Photos: black full-screen viewer, swipe/zoom, top controls, and a bottom thumbnail filmstrip. Tap the photo to hide all chrome/status bar for native full-screen viewing; tap again to bring controls back.
 - Selected photos preserve basic embedded metadata when available: capture date and GPS coordinates are shown with the visible chrome and disappear when chrome is hidden.
 - The app onboarding storyboard must teach the exact first-run share sheet setup path slowly: Photos Share -> More -> Edit -> plus next to Don't Swipe -> confirm Favorites -> Done -> tap Don't Swipe.
+- iOS does not expose whether the extension is in Share Sheet Favorites. Use `ShareSetupState` in App Group `group.com.satyabotcha.LockedPhotos` as the proxy: once either extension launches, mark setup complete and stop showing onboarding in the container app.
 
 ## Instructions
 

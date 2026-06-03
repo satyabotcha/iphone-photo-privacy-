@@ -7,6 +7,7 @@ final class LockedPhotosUITests: XCTestCase {
 
     func testOnboardingShowsOnlyVisualInstructionsAndSteps() throws {
         let app = XCUIApplication()
+        app.launchArguments.append("-resetShareSetupState")
         app.launch()
 
         XCTAssertTrue(app.otherElements["shareSetupAnimation"].waitForExistence(timeout: 3))
@@ -23,8 +24,20 @@ final class LockedPhotosUITests: XCTestCase {
         XCTAssertFalse(app.buttons["openPhotosButton"].exists)
     }
 
+    func testOnboardingHidesAfterShareExtensionWasUsed() throws {
+        let app = XCUIApplication()
+        app.launchArguments.append("-resetShareSetupState")
+        app.launchArguments.append("-markShareExtensionUsed")
+        app.launch()
+
+        XCTAssertTrue(app.staticTexts["Ready in Photos"].waitForExistence(timeout: 3))
+        XCTAssertFalse(app.otherElements["shareSetupAnimation"].exists)
+        XCTAssertFalse(app.otherElements["onboardingSteps"].exists)
+    }
+
     func testDemoDontSwipeViewerStaysWithinSelectedPhotosAndZooms() throws {
         let app = XCUIApplication()
+        app.launchArguments.append("-resetShareSetupState")
         app.launchArguments.append("-uiTestingDemoSet")
         app.launch()
 
