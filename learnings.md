@@ -68,3 +68,11 @@
 ### [2026-06-03] Onboarding copy should be editable and CTA-backed
 **Context:** Reworking setup instructions to feel closer to Raycast's onboarding card.
 **Learning:** Keep setup instruction text in one editable array, render it as a numbered list, include a clear bottom CTA for the first external action, and keep the copy short enough for first-time users without restating self-evident follow-up steps.
+
+### [2026-06-03] Onboarding should keep animation as the hero
+**Context:** Fitting setup instructions and the Open Photos button on one screen.
+**Learning:** Let the animation take the visual priority, scale it responsively, and keep instruction typography compact enough that the CTA remains visible without scrolling.
+
+### [2026-06-03] Thumbnail selection badges need stable layout
+**Context:** Making selected ticks reliably appear in the onboarding Photos grid.
+**Learning:** Put selection badges inside an explicit thumbnail `ZStack` after the image is sized, and keep the onboarding Photos grid to the visible selected row so bottom badges cannot fall into clipped hidden rows.

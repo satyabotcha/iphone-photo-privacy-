@@ -67,44 +67,45 @@ struct ContentView: View {
 
     private var emptyState: some View {
         GeometryReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: 26) {
-                    ShareSheetOnboardingAnimation()
-                        .padding(.top, 6)
+            let animationHeight = min(370, max(280, proxy.size.height * 0.48))
 
-                    VStack(alignment: .leading, spacing: 24) {
-                        Text(onboardingTitle)
-                            .font(.system(size: 36, weight: .bold))
-                            .foregroundStyle(.white)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .accessibilityIdentifier("onboardingTitle")
+            VStack(alignment: .leading, spacing: 12) {
+                ShareSheetOnboardingAnimation(previewHeight: animationHeight)
 
-                        VStack(alignment: .leading, spacing: 18) {
-                            ForEach(Array(onboardingInstructions.enumerated()), id: \.offset) { index, instruction in
-                                setupStep(number: index + 1, title: instruction)
-                            }
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(onboardingTitle)
+                        .font(.title3.weight(.bold))
+                        .foregroundStyle(.white)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityIdentifier("onboardingTitle")
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        ForEach(Array(onboardingInstructions.enumerated()), id: \.offset) { index, instruction in
+                            setupStep(number: index + 1, title: instruction)
                         }
-                        .accessibilityIdentifier("onboardingSteps")
                     }
-
-                    Spacer(minLength: 32)
-
-                    Button {
-                        openPhotos()
-                    } label: {
-                        Text("Open Photos")
-                            .font(.title3.weight(.semibold))
-                            .foregroundStyle(.black)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 62)
-                            .background(.white, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityIdentifier("openPhotosButton")
+                    .accessibilityIdentifier("onboardingSteps")
                 }
-                .frame(minHeight: proxy.size.height, alignment: .top)
-                .padding(18)
+
+                Spacer(minLength: 8)
+
+                Button {
+                    openPhotos()
+                } label: {
+                    Text("Open Photos")
+                        .font(.headline.weight(.semibold))
+                        .foregroundStyle(.black)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 54)
+                        .background(.white, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("openPhotosButton")
             }
+            .padding(.horizontal, 18)
+            .padding(.top, 10)
+            .padding(.bottom, 14)
+            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
         }
         .background(Color(red: 0.11, green: 0.11, blue: 0.11))
     }
@@ -169,11 +170,11 @@ struct ContentView: View {
     }
 
     private func setupStep(number: Int, title: String) -> some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 9) {
             Text("\(number)")
-                .font(.title3.weight(.medium))
+                .font(.footnote.weight(.semibold))
                 .foregroundStyle(.white)
-                .frame(width: 36, height: 36)
+                .frame(width: 24, height: 24)
                 .background(.white.opacity(0.08), in: Circle())
                 .overlay {
                     Circle()
@@ -181,10 +182,11 @@ struct ContentView: View {
                 }
 
             Text(title)
-                .font(.title3.weight(.regular))
+                .font(.subheadline.weight(.medium))
                 .foregroundStyle(.white)
                 .fixedSize(horizontal: false, vertical: true)
         }
+        .frame(height: 26)
     }
 
     private func openPhotos() {

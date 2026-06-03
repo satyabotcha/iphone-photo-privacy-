@@ -5,7 +5,12 @@ struct ShareSheetOnboardingAnimation: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var phase: StoryPhase = .photosReady
 
+    private let previewHeight: CGFloat
     private let demoImages = DemoPhotoFactory.makePhotos().map(\.image)
+
+    init(previewHeight: CGFloat = 340) {
+        self.previewHeight = previewHeight
+    }
 
     var body: some View {
         ZStack {
@@ -34,7 +39,7 @@ struct ShareSheetOnboardingAnimation: View {
             .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
             .padding(8)
         }
-        .frame(height: 340)
+        .frame(height: previewHeight)
         .clipped()
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Animated setup preview showing three photos selected, Share, More, Edit, add Don't Swipe to Favorites, Done, and open the locked viewer")
@@ -71,7 +76,7 @@ struct ShareSheetOnboardingAnimation: View {
             .padding(.horizontal, 16)
 
             photoGrid
-                .frame(height: 150)
+                .frame(height: 126)
                 .clipped()
 
             Spacer(minLength: 0)
@@ -120,36 +125,55 @@ struct ShareSheetOnboardingAnimation: View {
 
     private var photoGrid: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
-            ForEach(0..<9) { index in
+            ForEach(0..<3) { index in
                 let isSelected = phase.selectedPhotoIndices.contains(index)
                 let isCurrentTap = phase.tappingPhotoIndex == index
 
-                Image(uiImage: demoImage(at: index))
-                    .resizable()
-                    .scaledToFill()
-                    .overlay(alignment: .bottomTrailing) {
-                        if isSelected {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 31, weight: .bold))
-                                .symbolRenderingMode(.palette)
-                                .foregroundStyle(.white, .blue)
-                                .shadow(color: .black.opacity(0.2), radius: 3, y: 1)
-                                .padding(7)
-                                .transition(.scale(scale: 0.45).combined(with: .opacity))
-                                .overlay {
-                                    if isCurrentTap {
-                                        tapPulse
-                                            .scaleEffect(0.62)
-                                            .transition(.opacity)
-                                    }
-                                }
-                        }
-                    }
-                    .aspectRatio(0.82, contentMode: .fit)
-                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                photoThumbnail(index: index, isSelected: isSelected, isCurrentTap: isCurrentTap)
             }
         }
         .padding(.horizontal, 16)
+    }
+
+    private func photoThumbnail(index: Int, isSelected: Bool, isCurrentTap: Bool) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            Image(uiImage: demoImage(at: index))
+                .resizable()
+                .scaledToFill()
+
+            if isSelected {
+                ZStack {
+                    selectedPhotoBadge
+
+                    if isCurrentTap {
+                        tapPulse
+                            .scaleEffect(0.5)
+                            .transition(.opacity)
+                    }
+                }
+                .padding(7)
+                .transition(.scale(scale: 0.45).combined(with: .opacity))
+            }
+        }
+        .aspectRatio(0.86, contentMode: .fit)
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .animation(.smooth(duration: 0.28), value: isSelected)
+    }
+
+    private var selectedPhotoBadge: some View {
+        ZStack {
+            Circle()
+                .fill(.blue)
+
+            Circle()
+                .stroke(.white, lineWidth: 2.5)
+
+            Image(systemName: "checkmark")
+                .font(.system(size: 15, weight: .bold))
+                .foregroundStyle(.white)
+        }
+        .frame(width: 31, height: 31)
+        .shadow(color: .black.opacity(0.22), radius: 4, y: 1)
     }
 
     private func shareSheet(readyToLaunch: Bool) -> some View {
