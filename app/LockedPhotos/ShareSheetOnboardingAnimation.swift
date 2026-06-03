@@ -3,7 +3,7 @@ import UIKit
 
 struct ShareSheetOnboardingAnimation: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var phase: StoryPhase = .photos
+    @State private var phase: StoryPhase = .selectFirstPhoto
 
     private let demoImages = DemoPhotoFactory.makePhotos().map(\.image)
 
@@ -37,7 +37,7 @@ struct ShareSheetOnboardingAnimation: View {
         .frame(height: 340)
         .clipped()
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Animated setup preview showing Photos, Share, More, Edit, add Don't Swipe to Favorites, Done, and open the locked viewer")
+        .accessibilityLabel("Animated setup preview showing three photos selected, Share, More, Edit, add Don't Swipe to Favorites, Done, and open the locked viewer")
         .accessibilityIdentifier("shareSetupAnimation")
         .task {
             guard !reduceMotion else {
@@ -81,16 +81,16 @@ struct ShareSheetOnboardingAnimation: View {
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(.blue)
                     .frame(width: 46, height: 46)
-                    .background(.blue.opacity(phase == .photos ? 0.16 : 0), in: Circle())
+                    .background(.blue.opacity(phase == .shareButton ? 0.16 : 0), in: Circle())
                     .overlay {
-                        if phase == .photos {
+                        if phase == .shareButton {
                             tapPulse
                         }
                     }
 
                 Spacer()
 
-                Text("3 Selected")
+                Text("\(phase.selectedPhotoIndices.count) Selected")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.secondary)
 
@@ -126,16 +126,25 @@ struct ShareSheetOnboardingAnimation: View {
     private var photoGrid: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
             ForEach(0..<9) { index in
+                let isSelected = phase.selectedPhotoIndices.contains(index)
+                let isCurrentTap = phase.tappingPhotoIndex == index
+
                 Image(uiImage: demoImage(at: index))
                     .resizable()
                     .scaledToFill()
                     .overlay(alignment: .topTrailing) {
-                        if index == 1 || index == 2 || index == 4 {
+                        if isSelected {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.title3.weight(.semibold))
                                 .symbolRenderingMode(.palette)
                                 .foregroundStyle(.white, .blue)
                             .padding(6)
+                            .overlay {
+                                if isCurrentTap {
+                                    tapPulse
+                                        .scaleEffect(0.56)
+                                }
+                            }
                         }
                     }
                     .aspectRatio(0.82, contentMode: .fit)
@@ -164,15 +173,14 @@ struct ShareSheetOnboardingAnimation: View {
 
             HStack(spacing: 10) {
                 shareAppIcon("message.fill", title: "Messages", color: .green)
+                shareAppIcon("envelope.fill", title: "Mail", color: .blue)
+                shareAppIcon("eye.fill", title: "Preview", color: .indigo)
 
                 if readyToLaunch {
                     dontSwipeIcon(isHighlighted: true)
                 } else {
                     shareAppIcon("ellipsis", title: "More", color: .gray, isHighlighted: true)
                 }
-
-                shareAppIcon("eye.fill", title: "Preview", color: .indigo)
-                shareAppIcon("envelope.fill", title: "Mail", color: .blue)
             }
         }
         .padding(14)
@@ -301,7 +309,10 @@ struct ShareSheetOnboardingAnimation: View {
     }
 
     private enum StoryPhase: Int, CaseIterable {
-        case photos
+        case selectFirstPhoto
+        case selectSecondPhoto
+        case selectThirdPhoto
+        case shareButton
         case shareMore
         case appsMore
         case editPlus
@@ -315,21 +326,49 @@ struct ShareSheetOnboardingAnimation: View {
             return phases[nextIndex]
         }
 
+        var selectedPhotoIndices: Set<Int> {
+            switch self {
+            case .selectFirstPhoto:
+                return [1]
+            case .selectSecondPhoto:
+                return [1, 2]
+            case .selectThirdPhoto, .shareButton, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
+                return [1, 2, 4]
+            }
+        }
+
+        var tappingPhotoIndex: Int? {
+            switch self {
+            case .selectFirstPhoto:
+                return 1
+            case .selectSecondPhoto:
+                return 2
+            case .selectThirdPhoto:
+                return 4
+            case .shareButton, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
+                return nil
+            }
+        }
+
         // These holds are intentionally slower than the transitions so first-run setup can be followed without pausing.
         var holdNanoseconds: UInt64 {
             switch self {
-            case .photos:
-                return 2_000_000_000
+            case .selectFirstPhoto, .selectSecondPhoto:
+                return 1_400_000_000
+            case .selectThirdPhoto:
+                return 1_700_000_000
+            case .shareButton:
+                return 2_400_000_000
             case .shareMore:
-                return 2_600_000_000
+                return 3_300_000_000
             case .appsMore:
-                return 2_400_000_000
-            case .editPlus:
                 return 3_000_000_000
+            case .editPlus:
+                return 3_700_000_000
             case .favoriteDone:
-                return 2_700_000_000
+                return 3_400_000_000
             case .launchDontSwipe:
-                return 2_400_000_000
+                return 2_800_000_000
             case .lockedViewer:
                 return 2_200_000_000
             }
