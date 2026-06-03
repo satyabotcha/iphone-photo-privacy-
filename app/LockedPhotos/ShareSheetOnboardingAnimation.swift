@@ -3,7 +3,7 @@ import UIKit
 
 struct ShareSheetOnboardingAnimation: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var phase: StoryPhase = .selectFirstPhoto
+    @State private var phase: StoryPhase = .photosReady
 
     private let demoImages = DemoPhotoFactory.makePhotos().map(\.image)
 
@@ -81,12 +81,7 @@ struct ShareSheetOnboardingAnimation: View {
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(.blue)
                     .frame(width: 46, height: 46)
-                    .background(.blue.opacity(phase == .shareButton ? 0.16 : 0), in: Circle())
-                    .overlay {
-                        if phase == .shareButton {
-                            tapPulse
-                        }
-                    }
+                    .background(.blue.opacity(phase == .shareMore ? 0.16 : 0), in: Circle())
 
                 Spacer()
 
@@ -132,19 +127,22 @@ struct ShareSheetOnboardingAnimation: View {
                 Image(uiImage: demoImage(at: index))
                     .resizable()
                     .scaledToFill()
-                    .overlay(alignment: .topTrailing) {
+                    .overlay(alignment: .bottomTrailing) {
                         if isSelected {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.title3.weight(.semibold))
+                                .font(.system(size: 31, weight: .bold))
                                 .symbolRenderingMode(.palette)
                                 .foregroundStyle(.white, .blue)
-                            .padding(6)
-                            .overlay {
-                                if isCurrentTap {
-                                    tapPulse
-                                        .scaleEffect(0.56)
+                                .shadow(color: .black.opacity(0.2), radius: 3, y: 1)
+                                .padding(7)
+                                .transition(.scale(scale: 0.45).combined(with: .opacity))
+                                .overlay {
+                                    if isCurrentTap {
+                                        tapPulse
+                                            .scaleEffect(0.62)
+                                            .transition(.opacity)
+                                    }
                                 }
-                            }
                         }
                     }
                     .aspectRatio(0.82, contentMode: .fit)
@@ -309,10 +307,10 @@ struct ShareSheetOnboardingAnimation: View {
     }
 
     private enum StoryPhase: Int, CaseIterable {
+        case photosReady
         case selectFirstPhoto
         case selectSecondPhoto
         case selectThirdPhoto
-        case shareButton
         case shareMore
         case appsMore
         case editPlus
@@ -328,24 +326,28 @@ struct ShareSheetOnboardingAnimation: View {
 
         var selectedPhotoIndices: Set<Int> {
             switch self {
+            case .photosReady:
+                return []
             case .selectFirstPhoto:
                 return [0]
             case .selectSecondPhoto:
                 return [0, 1]
-            case .selectThirdPhoto, .shareButton, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
+            case .selectThirdPhoto, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
                 return [0, 1, 2]
             }
         }
 
         var tappingPhotoIndex: Int? {
             switch self {
+            case .photosReady:
+                return nil
             case .selectFirstPhoto:
                 return 0
             case .selectSecondPhoto:
                 return 1
             case .selectThirdPhoto:
                 return 2
-            case .shareButton, .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
+            case .shareMore, .appsMore, .editPlus, .favoriteDone, .launchDontSwipe, .lockedViewer:
                 return nil
             }
         }
@@ -353,12 +355,12 @@ struct ShareSheetOnboardingAnimation: View {
         // These holds are intentionally slower than the transitions so first-run setup can be followed without pausing.
         var holdNanoseconds: UInt64 {
             switch self {
+            case .photosReady:
+                return 700_000_000
             case .selectFirstPhoto, .selectSecondPhoto:
-                return 1_400_000_000
+                return 1_150_000_000
             case .selectThirdPhoto:
-                return 1_700_000_000
-            case .shareButton:
-                return 2_400_000_000
+                return 1_250_000_000
             case .shareMore:
                 return 3_300_000_000
             case .appsMore:

@@ -11,17 +11,17 @@ final class LockedPhotosUITests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.otherElements["shareSetupAnimation"].waitForExistence(timeout: 3))
-        XCTAssertTrue(app.staticTexts["In Photos, select photos and tap Share"].exists)
-        XCTAssertTrue(app.staticTexts["Tap More in the app row"].exists)
+        XCTAssertTrue(app.staticTexts["Set Up Don't Swipe"].exists)
+        XCTAssertTrue(app.staticTexts["Open Photos"].exists)
+        XCTAssertTrue(app.staticTexts["Select Photos"].exists)
+        XCTAssertTrue(app.staticTexts["Tap Share"].exists)
+        XCTAssertTrue(app.staticTexts["Tap More"].exists)
         XCTAssertTrue(app.staticTexts["Tap Edit"].exists)
-        XCTAssertTrue(app.staticTexts["Tap + next to Don't Swipe"].exists)
-        XCTAssertTrue(app.staticTexts["Confirm Don't Swipe is in Favorites"].exists)
-        XCTAssertTrue(app.staticTexts["Tap Done, then Don't Swipe"].exists)
+        XCTAssertTrue(app.staticTexts["Hit + next to Don't Swipe"].exists)
 
-        XCTAssertFalse(app.staticTexts["Don't Swipe"].exists)
+        XCTAssertTrue(app.buttons["openPhotosButton"].exists)
         XCTAssertFalse(app.buttons["demoToolbarButton"].exists)
         XCTAssertFalse(app.buttons["useDemoSetButton"].exists)
-        XCTAssertFalse(app.buttons["openPhotosButton"].exists)
     }
 
     func testOnboardingHidesAfterShareExtensionWasUsed() throws {

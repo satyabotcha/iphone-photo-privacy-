@@ -1,9 +1,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.openURL) private var openURL
     @State private var selectedPhotos: [SelectedPhoto] = []
     @State private var isViewerPresented = false
     @State private var hasCompletedShareSetup: Bool
+
+    private let onboardingTitle = "Set Up Don't Swipe"
+    private let onboardingInstructions = [
+        "Open Photos",
+        "Select Photos",
+        "Tap Share",
+        "Tap More",
+        "Tap Edit",
+        "Hit + next to Don't Swipe"
+    ]
 
     private let gridColumns = [
         GridItem(.adaptive(minimum: 96), spacing: 10)
@@ -55,24 +66,47 @@ struct ContentView: View {
     }
 
     private var emptyState: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                ShareSheetOnboardingAnimation()
-                    .padding(.top, 4)
+        GeometryReader { proxy in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 26) {
+                    ShareSheetOnboardingAnimation()
+                        .padding(.top, 6)
 
-                VStack(alignment: .leading, spacing: 9) {
-                    setupStep(number: 1, title: "In Photos, select photos and tap Share")
-                    setupStep(number: 2, title: "Tap More in the app row")
-                    setupStep(number: 3, title: "Tap Edit")
-                    setupStep(number: 4, title: "Tap + next to Don't Swipe")
-                    setupStep(number: 5, title: "Confirm Don't Swipe is in Favorites")
-                    setupStep(number: 6, title: "Tap Done, then Don't Swipe")
+                    VStack(alignment: .leading, spacing: 24) {
+                        Text(onboardingTitle)
+                            .font(.system(size: 36, weight: .bold))
+                            .foregroundStyle(.white)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .accessibilityIdentifier("onboardingTitle")
+
+                        VStack(alignment: .leading, spacing: 18) {
+                            ForEach(Array(onboardingInstructions.enumerated()), id: \.offset) { index, instruction in
+                                setupStep(number: index + 1, title: instruction)
+                            }
+                        }
+                        .accessibilityIdentifier("onboardingSteps")
+                    }
+
+                    Spacer(minLength: 32)
+
+                    Button {
+                        openPhotos()
+                    } label: {
+                        Text("Open Photos")
+                            .font(.title3.weight(.semibold))
+                            .foregroundStyle(.black)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 62)
+                            .background(.white, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("openPhotosButton")
                 }
-                .accessibilityIdentifier("onboardingSteps")
-            }
+                .frame(minHeight: proxy.size.height, alignment: .top)
                 .padding(18)
+            }
         }
-        .background(Color(uiColor: .systemGroupedBackground))
+        .background(Color(red: 0.11, green: 0.11, blue: 0.11))
     }
 
     private var readyState: some View {
@@ -137,15 +171,25 @@ struct ContentView: View {
     private func setupStep(number: Int, title: String) -> some View {
         HStack(spacing: 12) {
             Text("\(number)")
-                .font(.caption.weight(.bold))
-                .foregroundStyle(.secondary)
-                .frame(width: 26, height: 26)
-                .background(.quaternary, in: Circle())
+                .font(.title3.weight(.medium))
+                .foregroundStyle(.white)
+                .frame(width: 36, height: 36)
+                .background(.white.opacity(0.08), in: Circle())
+                .overlay {
+                    Circle()
+                        .stroke(.white.opacity(0.08), lineWidth: 1)
+                }
 
             Text(title)
-                .font(.body.weight(.semibold))
-                .foregroundStyle(.primary)
+                .font(.title3.weight(.regular))
+                .foregroundStyle(.white)
+                .fixedSize(horizontal: false, vertical: true)
         }
+    }
+
+    private func openPhotos() {
+        guard let url = URL(string: "photos-redirect://") else { return }
+        openURL(url)
     }
 }
 

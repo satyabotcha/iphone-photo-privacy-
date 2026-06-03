@@ -60,3 +60,11 @@
 ### [2026-06-03] Onboarding selection count must match visible checkmarks
 **Context:** Fixing the setup animation after it showed "3 Selected" while only one selected photo was visible.
 **Learning:** Keep all onboarding-selected thumbnails inside the visible clipped Photos grid; avoid selecting lower-row items unless the animation also scrolls or reveals them.
+
+### [2026-06-03] Onboarding selections need a visible zero-to-three beat
+**Context:** Making the Photos setup animation feel more natural before the Share Sheet appears.
+**Learning:** Start the Photos mock at zero selected, animate each checkmark in one at a time, and advance directly from the third selected photo into the share sheet.
+
+### [2026-06-03] Onboarding copy should be editable and CTA-backed
+**Context:** Reworking setup instructions to feel closer to Raycast's onboarding card.
+**Learning:** Keep setup instruction text in one editable array, render it as a numbered list, include a clear bottom CTA for the first external action, and keep the copy short enough for first-time users without restating self-evident follow-up steps.
